@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.skysz.skyszfw:skyszfw-core:2.6.03">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/skysz/skyszfw/skyszfw-core/2.6.03/skyszfw-core-2.6.03.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/skysz/skyszfw/skyszfw-core/2.6.03/skyszfw-core-2.6.03-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/skysz/skyszfw/skyszfw-core/2.6.03/skyszfw-core-2.6.03-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: skysz.sharelib:db2:db2jcc_license_cu:1.4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/sharelib/db2/1.4/db2-1.4-db2jcc_license_cu.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/sharelib/db2/1.4/db2-1.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/sharelib/db2/1.4/db2-1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

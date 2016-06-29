@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: skysz.proj.cqm:els:webServiceForZte:1.0.00">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/proj/cqm/els/1.0.00/els-1.0.00-webServiceForZte.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/proj/cqm/els/1.0.00/els-1.0.00-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/proj/cqm/els/1.0.00/els-1.0.00-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

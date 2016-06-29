@@ -1,0 +1,13 @@
+package com.yqy.dao.impl;
+
+import com.yqy.entity.${moduleName};
+import com.yqy.dao.${moduleName}Dao;
+import org.springframework.stereotype.Repository;
+
+/**
+* Created by ${developer} on ${now}.
+*/
+@Repository("${lowModuleName}Dao")
+public class ${moduleName}DaoImpl<T extends ${moduleName}> extends BaseDaoImpl<${moduleName}> implements ${moduleName}Dao<${moduleName}> {
+
+}

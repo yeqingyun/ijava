@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: skysz.sharelib:bouncycastle:bcprov:1.2.9">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/sharelib/bouncycastle/1.2.9/bouncycastle-1.2.9-bcprov.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/sharelib/bouncycastle/1.2.9/bouncycastle-1.2.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/skysz/sharelib/bouncycastle/1.2.9/bouncycastle-1.2.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

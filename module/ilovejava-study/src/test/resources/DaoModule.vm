@@ -1,0 +1,11 @@
+package cn.ilovejava.dao;
+
+import cn.ilovejava.baseBean.BaseRepository;
+import cn.ilovejava.entity.${moduleName};
+
+/**
+* Created by ${developer} on ${now}.
+*/
+public interface ${moduleName}Repository<T extends ${moduleName}> extends BaseRepository<${moduleName}> {
+
+}
