@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("${lowModuleName}")
 public class ${moduleName}Controller{
     @Resource
-    private ${moduleName}Service ${lowModuleName}Service;
+    private ${moduleName}Service<${moduleName}> ${lowModuleName}Service;
 
     @RequestMapping("/list")
     public String ${lowModuleName}List(){

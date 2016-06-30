@@ -1,6 +1,5 @@
 package cn.ilovejava.listener;
 
-import cn.ilovejava.controller.JavaController;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -18,14 +17,12 @@ public class ListenerSession implements HttpSessionListener {
     private SimpMessagingTemplate messagingTemplate;
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        log.info("会话创建");
-        JavaController.onLineCount++;
-        messagingTemplate.convertAndSend("/app/chat.login", JavaController.onLineCount);
+        //log.info("会话创建");
         System.out.println("会话创建");
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        log.info("会话销毁");
+        //log.info("会话销毁");
     }
 }

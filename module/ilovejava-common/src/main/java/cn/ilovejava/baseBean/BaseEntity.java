@@ -13,7 +13,7 @@ public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, columnDefinition = "BIGINT UNSIGNED")
+    @Column(name = "id_", nullable = false, columnDefinition = "BIGINT UNSIGNED")
     protected Long id;
 
     @Column(name = "createtime_")

@@ -6,9 +6,11 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://120.27.35.56:3306/java</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping class="cn.ilovejava.entity.JavaModulePrivilegeEntity"/>
+    <mapping class="cn.ilovejava.entity.JavaModulePrivilegeEntity"/>
       <mapping class="cn.ilovejava.entity.Module"/>
-      <!-- DB schema will be updated if needed -->
+      <mapping class="cn.ilovejava.entity.JavaArticleEntity"/>
+    <mapping class="cn.ilovejava.entity.ArticleContent"/>
+    <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

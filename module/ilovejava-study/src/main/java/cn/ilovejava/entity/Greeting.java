@@ -1,6 +1,8 @@
 package cn.ilovejava.entity;
 
-public class Greeting {
+import cn.ilovejava.baseBean.BaseEntity;
+
+public class Greeting extends BaseEntity {
  
     private String content;
  

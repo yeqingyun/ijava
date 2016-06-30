@@ -13,7 +13,7 @@ import java.io.IOException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(RuntimeException.class)
     public void handleAccessDeniedException(HttpServletResponse response) throws IOException {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.sendRedirect("/error");

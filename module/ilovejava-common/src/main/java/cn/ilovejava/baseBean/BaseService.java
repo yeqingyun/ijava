@@ -1,7 +1,6 @@
 package cn.ilovejava.baseBean;
 
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,7 +12,6 @@ import java.util.List;
  */
 @Log4j
 public abstract class BaseService<T extends BaseEntity> {
-    protected Logger logger = log;
     public abstract BaseRepository<T> getBaseRepository();
     public T insert(T t){
         return getBaseRepository().save(t);

@@ -1,6 +1,8 @@
 package cn.ilovejava.entity;
 
-public class HelloMessage {
+import cn.ilovejava.baseBean.BaseEntity;
+
+public class HelloMessage extends BaseEntity{
  
     private String name;
  

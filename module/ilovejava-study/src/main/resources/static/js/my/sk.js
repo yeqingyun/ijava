@@ -2,6 +2,7 @@
  * Created by NF on 2016/6/29.
  */
 var stompClient = null;
+var shit = 0;
 
 function setConnected(connected) {
     document.getElementById('connect').disabled = connected;
@@ -9,7 +10,7 @@ function setConnected(connected) {
     document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
     document.getElementById('response').innerHTML = '';
 }
-
+connect();
 function connect() {
     var socket = new SockJS('/hello');
     stompClient = Stomp.over(socket);
@@ -17,7 +18,10 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/greetings', function(greeting){
-            alert(JSON.parse(greeting.body).content);
+            //alert(JSON.parse(greeting.body).content);
+            var count = JSON.parse(greeting.body).content;
+            $('.dataStatistics').dataStatistics({min: shit, max: count, time: count/10*3000, len: 2});
+            shit = count;
         });
     });
 }

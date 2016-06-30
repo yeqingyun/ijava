@@ -1,28 +1,11 @@
 package cn.ilovejava.controller;
 
-import cn.ilovejava.entity.Java;
-import cn.ilovejava.entity.Pet;
-import cn.ilovejava.entity.User;
-import cn.ilovejava.service.JavaService;
-import cn.ilovejava.service.PetService;
-import cn.ilovejava.service.UserService;
 import lombok.extern.log4j.Log4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *  控制主页
@@ -30,12 +13,15 @@ import java.util.List;
 @Controller
 @Log4j
 public class IndexController {
-    @Resource PetService<Pet> petService;
+    /*@Resource PetService<Pet> petService;
     @Resource UserService<User> userService;
-    @Resource JavaService<Java> javaService;
+    @Resource JavaService<Java> javaService;*/
+
+
+
     @RequestMapping(value = {"","/"})
     public String index(ModelMap map){
-        log.info("index.html");
+        //log.info("index.html");
         return "index1";
     }
 
@@ -47,23 +33,23 @@ public class IndexController {
 
     @RequestMapping("/blogPage")
     public String blog(String id){
-        log.info("blog.html");
+        //log.info("blog.html");
         return "blog";
     }
 
     @RequestMapping("/12")
     public String to12(){
-        javaService.sa();
+        //javaService.sa();
         return "blog";
     }
 
-    @RequestMapping("/upd")
+    /*@RequestMapping("/upd")
     public String upd(ModelMap map){
-        /*Pet pet = new Pet();
+        *//*Pet pet = new Pet();
         pet.setName("kankan");
         pet.setBirth(new Date());
         pet.setSex("m");
-        petService.insert(pet);*/
+        petService.insert(pet);*//*
         List<Long> list = new ArrayList();
         list.add(1l);
         list.add(2l);
@@ -84,12 +70,12 @@ public class IndexController {
         return "index";
     }
 
-    /**
+    *//**
      *
      * 分页
      * @param pageable
      * @return
-     */
+     *//*
 
     @RequestMapping(value = "/page")
     @ResponseBody
@@ -105,5 +91,5 @@ public class IndexController {
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = new PageRequest(page, size, sort);
         return petService.findPage(pageable);
-    }
+    }*/
 }
