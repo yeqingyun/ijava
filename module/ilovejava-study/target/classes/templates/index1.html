@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>My Home</title>
+
+    <!-- Bootstrap -->
+    <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            padding-top: 65px
+        }
+
+        .footer {
+            padding-top: 35px
+        }
+
+        /*第一块栏日期样式*/
+        .date {
+            color: grey;
+            font-family: verdana, '宋体', arial, sans-serif;
+        }
+
+        .row a {
+            color: #00608d;
+            font-size: 13px;
+            font-family: verdana, '宋体', arial, sans-serif
+        }
+
+        /*li超链接超出部分省略号显示*/
+        .list-unstyled li {
+            display: block;
+            font-size: 14px;
+            height: 16px;
+            line-height: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis
+        }
+    </style>
+</head>
+<body>
+
+
+<!--首页导航栏-->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">I Love Java</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Javascript</a></li>
+            <li><a href="#">Java</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Linux <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">jmeter</a></li>
+                    <li><a href="#">EJB</a></li>
+                    <li><a href="#">Jasper Report</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">另一个分离的链接</a></li>
+                </ul>
+            </li>
+        </ul>
+        <p class="navbar-text navbar-right small">循路觅宗师，形影不相离，师知吾亦知，吾乃成宗师。</p>
+    </div>
+</nav>
+<!--首页导航栏结束-->
+
+
+<div class="container">
+
+    <!--左侧大栏区域-->
+    <div class="row">
+        <div class="col-xs-7 col-sm-8">
+            <div class="well well-lg">
+                <div class="page-header-lg">
+                    现在
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6">
+                        <a href="#" class="thumbnail">
+                            <img src="/imgs/Koala.jpg"
+                                 alt="通用的占位符缩略图" />
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-xs-9 col-sm-9">
+                                <div class="page-header">
+                                    最新
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="/article/getById?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键事实上事实上</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 date">
+                                <div class="page-header">
+                                    <a href="#">更多</a>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>3-29</li>
+                                    <li>3-29</li>
+                                    <li>3-29</li>
+                                    <li>3-29</li>
+                                    <li>3-29</li>
+                                    <li>3-29</li>
+                                    <li>3-29</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--在此增加左侧大栏-->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            标题
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    标题
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    标题
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            标题
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    标题
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    标题
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            标题
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    标题
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    标题
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                    <li>Item 3</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                    <li>Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!--右侧小菜单区域-->
+        <div class="col-xs-5 col-sm-4">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            这是什么网站？
+                        </div>
+                        <p>
+                            "我爱Java"是一个人建立与营运的IT知识交流学习的平台，目前暂时只收录我自己看过和学习过的文章和知识。
+                            但"我爱Java"一直处于更新状态中，将会不断开启新的功能，好了，介绍完毕，知道这是什么网站了吗？
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            在线人数
+                        </div>
+                        <div th:include="dataStatistics :: cps"></div>
+                        <!--<ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>-->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!--<div class="row">
+        <div class="col-xs-6 col-sm-8">
+            <div class="well well-lg">
+                <div class="page-header-lg">
+                    标题
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="page-header">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="page-header">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+
+    <!--<div class="row footer">
+        <div class="col-xs-6 col-sm-12">
+            <p class="text-center">© 2016  test.net  All Rights Reserved.</p>
+        </div>
+    </div>-->
+    <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+        Javascript and reload this page!</h2></noscript>
+    <div>
+        <div>
+            <button id="connect" onclick="connect();">Connect</button>
+            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        </div>
+        <div id="conversationDiv">
+            <label>What is your name?</label><input type="text" id="name" />
+            <button id="sendName" onclick="sendName();">Send</button>
+            <p id="response"></p>
+        </div>
+    </div>
+
+
+    <!--首页页脚-->
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">© 2016 ilovejava.cn All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!--首页页脚结束-->
+
+    <!--container结束-->
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--<script src="/bootstrap/js/jquery-1.11.1.min.js"></script>-->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/goldbootstrap/js/bootstrap.min.js"></script>
+<!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+</body>
+</html>

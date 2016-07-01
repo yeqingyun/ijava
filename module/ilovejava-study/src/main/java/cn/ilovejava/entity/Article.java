@@ -23,8 +23,8 @@ public class Article extends BaseEntity {
     @Column(name = "typeid_")
     private int typeId;
     @OneToOne
-    @JoinColumn(name = "contentid_", referencedColumnName = "id_")
-    private ArticleContent contentId;
+    @JoinColumn(name = "contentid_")
+    private ArticleContent content;
     @Basic
     @Column(name = "subtitle_")
     private String subtitle;
@@ -63,14 +63,6 @@ public class Article extends BaseEntity {
     }
 
 
-    public ArticleContent getContentId() {
-        return contentId;
-    }
-
-    public void setContentId(ArticleContent contentId) {
-        this.contentId = contentId;
-    }
-
     public String getSubtitle() {
         return subtitle;
     }
@@ -89,7 +81,7 @@ public class Article extends BaseEntity {
         if (moduleCode != that.moduleCode) return false;
         if (author != that.author) return false;
         if (typeId != that.typeId) return false;
-        if (contentId != that.contentId) return false;
+        //if (contentId != that.contentId) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (subtitle != null ? !subtitle.equals(that.subtitle) : that.subtitle != null) return false;
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="cps">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+    <style>
+        .dataStatistics * {
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/dataStatistics.css" media="screen" type="text/css" />
+    <script src="/js/jquery/jquery.js"></script>
+    <script src="/js/otherJs/jquery.dataStatistics.js"></script>
+    <script src="http://cdn.bootcss.com/sockjs-client/0.3.4/sockjs.min.js"></script>
+    <script src="http://cdn.bootcss.com/stomp.js/2.3.0/stomp.min.js"></script>
+    <script src="/js/my/sk.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            //$('.dataStatistics').dataStatistics({min: 0, max: 0, time: 3000, len: 2});
+        });
+    </script>
+</head>
+<body>
+    <div class="dataStatistics">
+        <div class="digit_set"></div>
+        <div class="digit_set set_last"></div>
+    </div>
+</body>
+</html>

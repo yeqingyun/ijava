@@ -15,7 +15,7 @@ public class ArticleContent extends BaseEntity {
     private String contentText;
     @SuppressWarnings("JpaAttributeTypeInspection")
     @OneToOne
-    @JoinColumn(name = "artcileid_", referencedColumnName = "id_")
+    @JoinColumn(name = "artcileid_")//, referencedColumnName = "id_"
     private Article artcile;
 
 

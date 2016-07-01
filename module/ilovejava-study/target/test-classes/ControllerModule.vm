@@ -1,0 +1,25 @@
+package cn.ilovejava.controller;
+
+import cn.ilovejava.entity.${moduleName};
+import cn.ilovejava.service.${moduleName}Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
+import lombok.extern.log4j.Log4j;
+
+/**
+* Created by ${developer} on ${now}.
+*/
+@Log4j
+@Controller
+@RequestMapping("${lowModuleName}")
+public class ${moduleName}Controller{
+    @Resource
+    private ${moduleName}Service<${moduleName}> ${lowModuleName}Service;
+
+    @RequestMapping("/list")
+    public String ${lowModuleName}List(){
+        return "${lowModuleName}";
+    }
+}
