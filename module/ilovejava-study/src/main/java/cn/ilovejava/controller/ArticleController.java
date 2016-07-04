@@ -27,12 +27,8 @@ public class ArticleController{
 
     @RequestMapping(value = "/getById",method= RequestMethod.GET)
     public String get(long id,ModelMap modelMap){
-        try {
-            Article article = articleService.findById(id);
-            modelMap.put("art", article);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Article article = articleService.findById(id);
+        modelMap.put("art", article);
         return "blog1";
     }
 }

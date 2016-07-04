@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="zh-cn">
     <meta charset="UTF-8"/>
     <title>My Blog</title>
@@ -13,6 +13,9 @@
 
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <style>
+        body {
+            padding-top: 65px
+        }
         .footer {
             padding-top: 35px
         }
@@ -96,39 +99,7 @@
 
 
 <!--导航栏-->
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#example-navbar-collapse">
-            <span class="sr-only">切换导航</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <a class="navbar-brand" href="#">W3Cschool</a>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="#">iOS</a></li>
-            <li><a href="#">SVN</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Java <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">jmeter</a></li>
-                    <li><a href="#">EJB</a></li>
-                    <li><a href="#">Jasper Report</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">分离的链接</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">另一个分离的链接</a></li>
-                </ul>
-            </li>
-        </ul>
-        <p class="navbar-text navbar-right">向右对齐-文本</p>
-    </div>
-</nav>
+<div th:include="header :: head"></div>
 <!--首页导航栏结束-->
 
 
@@ -141,96 +112,20 @@
             <div class="well well-lg">
                 <div class="blog-title">
                     <div class="page-header text-center">
-                        <b>Apple推史上最廉价手机iPhone SE的目的是什么？
-                            <small>抢占低端市场？</small>
+                        <b th:text="${art.title}">
+                            <small th:text="${art.subtitle}">抢占低端市场？</small>
                         </b>
-                        <span class="blog-info"><span class="blog-time">2016-3-30 9:37:25</span><span
-                                class="blog-views">阅读数：102</span></span>
+                        <span class="blog-info"><span th:text="${art.publishTime}" class="blog-time">2016-3-30 9:37:25</span><span
+                                class="blog-views">阅读数：<df th:text="${art.viewCount}">102</df></span></span>
                     </div>
                 </div>
-                <span class="blog-text">
-
-                    <p>
-                        3 月 22 日消息，《福布斯》网络版今天刊登了署名为马克·罗戈威斯基（Mark Rogowsky）的文章，对苹果推出该公司史上最廉价智能手机 iPhone SE
-                        的意义进行了分析。以下就是这篇文章的主要内容。
-
-                        随着新版 4 英寸显示屏的 iPhone SE 智能手机的推出，苹果也极大地颠倒了其“新、更旧、最旧（new， older, oldest）”的产品战略。一段时间以来，最新版的 iPhone
-                        智能手机售价一直为 649 美元（打折之前），只是去年的一款 iPhone 便宜了 100 美元，以及在此前一年的一款 iPhone 售价为 449 美元。然而，苹果最新推出的 iPhone
-                        SE
-                        手机却从两个方面打破了苹果的传统。其一是，iPhone SE 使用了几乎与当前 iPhone 6S 相同的内置硬件，这不仅仅是一款能够让用户看上去可以省钱的手机。其二是，iPhone SE
-                        的起步价为
-                        399 美元，这是此前的 iPhone 没有出现过的。那么，苹果推出这款史上最廉价的 iPhone 手机，对该公司本身以及消费者而言到底会有何重要意义呢？在此，我们不妨分析一下。
-                    </p>
-
-                    <p>
-                        所得超过所见：
-
-                        从几乎所有的技术角度来看，iPhone SE 就是小型版的 iPhone 6s 手机。iPhone SE 配置了当前的 A9 芯片，以及 M9 协处理器，搭载 1200 万像素后置摄像头（带有
-                        Live Photos 功能），配备双色温闪光灯，支持 4K 视频拍摄，NFC 近场通讯功能，与此同时，苹果最新发布的软件功能 Apple Pay
-                        也在这款小尺寸设备上得到了支持。在其它硬件和功能方面，iPhone SE 支持“Hey Siri 实时唤醒功能”，用户不需要按键就可以激活 Siri。另外，iPhone SE 的电池和
-                        WiFi
-                        性能都得到了提升，支持 VoLTE 语音通话和 WiFi 通话，运行 iOS 9.3 操作系统。不过，iPhone SE 没有配置 3D Touch 功能，而 3D Touch 曾让
-                        iPhone
-                        6s 获得了独特的用户界面功能。从多数情况来看，iPhone SE 就是一款包含在与 iPhone 5s 设计相似外壳中的 iPhone 6s。 苹果方面还宣称，iPhone SE
-                        的电池续航时间是当前所有 iPhone 中最长的，当然这主要是得益于 iPhone SE 的显示屏尺寸比 iPhone 6s 和 6s Plus 都小的缘故。
-                    </p>
-
-                    <p>
-                        从历史的情况来看，打折的 iPhone 产品往往都是两年以上的 iPhone。这种打折后的手机，一方面，对那些希望能够节省 200
-                        美元的用户而言并无太大的意义，另一方面，那也意味着他们享受不到大量的优质功能，例如，没有 Apple Pay
-                        支付功能的支持、摄像头功能较低、速度更加缓慢等。但是，那也的确却是许多人愿意进行的一种平衡交易。
-
-                        苹果当然非常清楚，许多 iPhone 用户喜欢更小的 4 英寸显示屏模式，而不愿意升级产品。市场研究机构 Localytics 的数据表明，在 10 位 iPhone 手机用户中，多达 4
-                        位用户仍在坚持使用更小显示屏的手机，至少其中一些用户就是因为不愿意换成大显示屏的手机。苹果高级副总裁格莱格·乔斯威亚克（Greg Joswiak）也曾在产品发布会上承认了这一情况。
-
-                        乔斯威亚克还显示了一些灵气，表明约有三分之一的用户首次购买 iPhone 时就选择了 4 英寸款型的 iPhone。在中国市场，这一比例更是接近三分之二。当然，大量的新买家选择小型的
-                        iPhone，并不是因为他们非常看重这样的显示屏尺寸，而是为了省钱。
-                    </p>
-
-                    <p>
-                        价格因素：
-
-                        苹果新版 iPhone SE 的一大亮点就是价格。399 美元！在一个低于 100 美元售价的 Android 手机到处存在的市场上，再加上诸如 Moto G 之类的手机才卖 200
-                        美元的情况之下，iPhone SE 的 399 美元售价并不算便宜。但对苹果公司而言，这却是一个非常低廉的休憩。段时间之后，iPhone SE 的价格自然会下降到 299
-                        美元。当然，这种情况可能不太会在美国市场发生，因为在美国市场，苹果的市场份额高达 43%，但在其它市场，这种情况似乎不可避免。
-
-                        在印度市场，苹果已经推出了低于 200 美元的手机，例如旧版的 iPhone 4s，不过这款手机最早发布时间是 2011 年。目前来看，iPhone SE
-                        暂时还不会进入印度市场，但是，如果苹果在印度市场找到越来越多的动力，那么不排除该公司会这不e 手机。在印度市场上，中等收入的用户目前为止一直不太愿意购买苹果的高端 iPhone
-                        手机，这一点与中国市场不同。随着 iPhone SE 手机的推出，苹果如今也设置了一个令人感兴趣的新标准，并打开了仅仅意味着苹果产品的价格下调了 10%
-                        以上，而是让这款产品也具有了一定的艺术风格。苹果此前已经预计，当前这个季度的 iPhone 销量将会同比下滑，并将是该公司史上的首次下滑。苹果此番推出更低价格的 iPhone SE
-                        手机，或许只有一个原因，就是努力提升 iPhone 在手机市场上的份额。
-
-                        事实上，这并不是苹果公司首次这样做。特别是在印度市场，苹果一直在销售款型更老且在其它市场一直打折的 iPhon一些空间，从而可以按照更低的价格，继续在新兴市场上销售 iPhone 5s 手机。
-
-                        但是，毕竟那仍旧是一款老手机，而且苹果公司可能不会认为这是极大推动增长的方式。另一方面，如果 iPhone SE
-                        能够持续苹果典型产品的周期时长，并采用苹果手机通常的降价方式，那么未来还是会有机遇的。或许，一尽快向该市场推出 iPhone SE 产品。
-                    </p>
-
-                    <p>
-                        长期影响：
-
-                        这也给 iPhone 的将来带来了一个问题。从官方数据来看，苹果目前在全球销售 5 款 iPhone 手机，其 iPhone SE（399 美元）、iPhone 6（549
-                        美元）、iPhone6S
-                        和 6 Plus（649 美元）、iPhone 6S Plus（749 美元）。尽管这些产品给人一种非常复杂的感觉，但却可以给人带来多样化的选择，例如用户可以选择不同的尺寸和不同的价格。
-
-                        当然，如果从手机内存空间的大小来看，这些手机可能会有一些重叠。iPhone SE 延续了苹果的传统，最基本的一款 iPhone SE 内存空间为 16GB。但是，iPhone SE 与
-                        iPhone
-                        6 的另一大不同点就是，这两款手机的差价也达到了 150 美元。随着新手机将于今年秋季全面发布，iPhone 6 的售价也将维持在 449 美元左右。尽管与 iPhone SE
-                        相比，iPhone 6
-                        的差价只有 50 美元，对苹果而言，似乎没有太大的意义。但也要知道，iPhone SE 仍算是更加高档的手机。
-
-                        当然，iPhone SE 的价格非常便宜，在一定程度上，这也是一种营销手段。但是，一旦 iPhone 6s 按照 549 美元的价格取代 iPhone
-                        6，这一问题也会得到部分地解决。这样，用户至少可以按照更低的价格来购买配置 3D Touch 功能的更大显示屏的手机。据称，苹果未来还会针对 iPhone
-                        产品线采取降价措施。那么，苹果在今年秋季推出的 iPhone 7 还会降价 50 美元出售吗？可能不会。
-
-                        苹果今天还推出了 256GB 的 iPad 平板电脑，此举可能意味着，业界将来也会看到配置 32GB/128GB/256GB 的各种新型 iPhone
-                        手机。在未来几个月，这将是值得我们密切关注的动态。
-                    </p>
+                <span class="blog-text" th:text="${art.content.contentText}">
+                    抱歉，你想看的文章不存在或已被删除....
                 </span>
 
                 <div class="blog-footter">
-                    <span class="blog-like"><i class="fa fa-heart fa-lg"></i>喜欢[30]</span><span class="blog-unlike"><i
-                        class="fa fa-heart-o fa-lg"></i>不喜欢[50]</span>
+                    <span class="blog-like"><i class="fa fa-heart fa-lg"></i>喜欢[50]</span><span class="blog-unlike"><i
+                        class="fa fa-heart-o fa-lg"></i>不喜欢[20]</span>
 
                     <p>
 
@@ -286,8 +181,8 @@
             <div class="well well-lg">
                 <form role="form">
                     <div class="form-group">
-                        <label for="name">发表评论</label>
-                        <textarea class="form-control" rows="4"></textarea>
+                        <label>发表评论</label>
+                        <textarea name="comment" class="form-control" rows="4"></textarea>
                         <br/>
                         <input class="btn btn-default" type="submit" value="提交" />
                     </div>
@@ -300,15 +195,11 @@
 </div>
 
 
-<footer class="footer">
-    <div class="container">
-        <p class="text-center">© 2016 test.net All Rights Reserved.</p>
-    </div>
-</footer>
+<div th:include="footer :: foot"></div>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/bootstrap/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jquery/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/goldbootstrap/js/bootstrap.min.js"></script>
 </body>

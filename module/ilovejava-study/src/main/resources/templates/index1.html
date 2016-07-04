@@ -47,9 +47,10 @@
 </head>
 <body>
 
+<div th:include="header :: head"></div>
 
 <!--首页导航栏-->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
                 data-target="#example-navbar-collapse">
@@ -81,7 +82,7 @@
         </ul>
         <p class="navbar-text navbar-right small">循路觅宗师，形影不相离，师知吾亦知，吾乃成宗师。</p>
     </div>
-</nav>
+</nav>-->
 <!--首页导航栏结束-->
 
 
@@ -418,11 +419,12 @@
 
 
     <!--首页页脚-->
-    <footer class="footer">
+    <div th:include="footer :: foot"></div>
+    <!--<footer class="footer">
         <div class="container">
             <p class="text-center">© 2016 ilovejava.cn All Rights Reserved.</p>
         </div>
-    </footer>
+    </footer>-->
     <!--首页页脚结束-->
 
     <!--container结束-->

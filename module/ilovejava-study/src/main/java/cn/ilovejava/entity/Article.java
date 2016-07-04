@@ -3,6 +3,7 @@ package cn.ilovejava.entity;
 import cn.ilovejava.baseBean.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by yqy on 2016/6/30.
@@ -28,6 +29,20 @@ public class Article extends BaseEntity {
     @Basic
     @Column(name = "subtitle_")
     private String subtitle;
+    @Basic
+    @Column(name = "viewcount_")
+    private long viewCount;
+    @Basic
+    @Column(name = "publishtime_")
+    @Temporal(TemporalType.DATE)
+    private Date publishTime;
+    @Basic
+    @Column(name = "like_")
+    private long like;
+    @Basic
+    @Column(name = "dislike_")
+    private long dislike;
+
 
     public String getTitle() {
         return title;
@@ -67,8 +82,48 @@ public class Article extends BaseEntity {
         return subtitle;
     }
 
+    public ArticleContent getContent() {
+        return content;
+    }
+
+    public void setContent(ArticleContent content) {
+        this.content = content;
+    }
+
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
+    }
+
+    public long getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(long viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public long getLike() {
+        return like;
+    }
+
+    public void setLike(long like) {
+        this.like = like;
+    }
+
+    public long getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(long dislike) {
+        this.dislike = dislike;
     }
 
     @Override
