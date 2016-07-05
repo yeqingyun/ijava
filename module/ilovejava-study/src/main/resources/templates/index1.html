@@ -13,6 +13,7 @@
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <style>
         body {
+            font-family: Georgia, "Times New Roman", Times, serif;
             padding-top: 65px
         }
 
@@ -111,7 +112,7 @@
                                 <ul class="list-unstyled">
                                     <li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="/article/getById?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
-                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="/article/getById?id=2">冷门JS技巧</a></li>
                                     <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键事实上事实上</a></li>
@@ -435,7 +436,16 @@
 <!--<script src="/bootstrap/js/jquery-1.11.1.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/goldbootstrap/js/bootstrap.min.js"></script>
+<script src="/js/my/Request.js"></script>
+<script src="/js/my/Constant.js"></script>
 <!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 </body>
 </html>
+<script>
+$(function(){
+    Request.post("/article/indexList",function(response){
+        alert(response);
+    });
+});
+</script>

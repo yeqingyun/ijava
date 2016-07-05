@@ -34,7 +34,6 @@
         }
 
         .blog-text {
-            text-indent: 2em;
             margin: 18px 0px 20px 0px;
             line-height: 1.8em;
         }
@@ -113,19 +112,21 @@
                 <div class="blog-title">
                     <div class="page-header text-center">
                         <b th:text="${art.title}">
-                            <small th:text="${art.subtitle}">抢占低端市场？</small>
                         </b>
+                        <b><small th:text="${art.subtitle}"></small></b>
                         <span class="blog-info"><span th:text="${art.publishTime}" class="blog-time">2016-3-30 9:37:25</span><span
-                                class="blog-views">阅读数：<df th:text="${art.viewCount}">102</df></span></span>
+                                class="blog-views">阅读数：<obj th:text="${art.viewCount}">102</obj></span></span>
                     </div>
                 </div>
-                <span class="blog-text" th:text="${art.content.contentText}">
+
+                <span class="blog-text" th:utext="${art.content.contentText}">
                     抱歉，你想看的文章不存在或已被删除....
                 </span>
 
+
                 <div class="blog-footter">
-                    <span class="blog-like"><i class="fa fa-heart fa-lg"></i>喜欢[50]</span><span class="blog-unlike"><i
-                        class="fa fa-heart-o fa-lg"></i>不喜欢[20]</span>
+                    <span class="blog-like"><i class="fa fa-heart fa-lg"></i>喜欢[<obj th:text="${art.like}">0</obj>]</span><span class="blog-unlike"><i
+                        class="fa fa-heart-o fa-lg"></i>不喜欢[<obj th:text="${art.dislike}">0</obj>]</span>
 
                     <p>
 

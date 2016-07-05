@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -20,9 +21,10 @@ public class ArticleController{
     @Resource
     private ArticleService<Article> articleService;
 
-    @RequestMapping("/list")
+    @RequestMapping("/indexList")
+    @ResponseBody
     public String articleList(){
-        return "article";
+        return "helloworld";
     }
 
     @RequestMapping(value = "/getById",method= RequestMethod.GET)
@@ -31,4 +33,6 @@ public class ArticleController{
         modelMap.put("art", article);
         return "blog1";
     }
+
+
 }
