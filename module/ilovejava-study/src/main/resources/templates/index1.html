@@ -109,14 +109,15 @@
                                 <div class="page-header">
                                     最新
                                 </div>
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
+                                <ul id="newBlogTitleList" class="list-unstyled" th:each="blog:${newBlogs}">
+                                    <li><i class="fa fa-link"></i> <a th:text="${blog.title}" th:href="'/article/getById?id='+${blog.id}" ></a></li>
+                                    <!--<li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="/article/getById?id=1">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="/article/getById?id=2">冷门JS技巧</a></li>
                                     <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
                                     <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键事实上事实上</a></li>
-                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>
+                                    <li><i class="fa fa-link"></i> <a href="#">要想成为优秀的程序员？多阅读是关键</a></li>-->
 
                                 </ul>
                             </div>
@@ -124,14 +125,15 @@
                                 <div class="page-header">
                                     <a href="#">更多</a>
                                 </div>
-                                <ul class="list-unstyled">
+                                <ul id="newBlogDateList" class="list-unstyled" th:each="blog:${newBlogs}">
+                                    <li th:text="${#dates.format(blog.publishTime, 'MM-dd')}"></li>
+                                    <!--<li>3-29</li>
                                     <li>3-29</li>
                                     <li>3-29</li>
                                     <li>3-29</li>
                                     <li>3-29</li>
                                     <li>3-29</li>
-                                    <li>3-29</li>
-                                    <li>3-29</li>
+                                    <li>3-29</li>-->
                                 </ul>
                             </div>
                         </div>
@@ -291,8 +293,8 @@
                             这是什么网站？
                         </div>
                         <p>
-                            "我爱Java"是一个人建立与营运的IT知识交流学习的平台，目前暂时只收录我自己看过和学习过的文章和知识。
-                            但"我爱Java"一直处于更新状态中，将会不断开启新的功能，好了，介绍完毕，知道这是什么网站了吗？
+                            "I Love Java"是一个人建立与营运的IT知识交流学习的平台，目前暂时只收录我自己看过和学习过的文章和知识。
+                            但"I Love Java"一直处于更新状态中，将会不断开启新的功能，好了，介绍完毕，知道这是什么网站了吗？
                         </p>
                     </div>
                 </div>
@@ -444,8 +446,14 @@
 </html>
 <script>
 $(function(){
-    Request.post("/article/indexList",function(response){
-        alert(response);
+    Request.post("/article/indexList",{},function(response){
+        //alert(response[0].title);
+        $.each(response,function(i,blog){
+            var blogtitle = '<li><i class="fa fa-link"></i><a href="/article/getById?id='+blog.id+'">'+blog.title+'</a></li>';
+            var blogdate = '<li>'+blog.publishTime.substring(5)+'</li>';
+            $("#newBlogTitleList").append(blogtitle);
+            $("#newBlogDateList").append(blogdate);
+        });
     });
 });
 </script>

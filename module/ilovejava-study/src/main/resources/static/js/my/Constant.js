@@ -2,12 +2,13 @@ var Constant = (function($){
 
     var Fn = {
         _alert: function(msg, type){
-            $.gritter.add({
+            /*$.gritter.add({
                 class_name: 'gritter-' + type,
                 title: '系统提示',
                 text: msg,
                 time: 2000
-            });
+            });*/
+            alert("msg");
             return false;
         },
         _showLoading: function(text){

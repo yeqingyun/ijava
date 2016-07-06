@@ -1,6 +1,7 @@
 package cn.ilovejava.entity;
 
 import cn.ilovejava.baseBean.BaseEntity;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -32,6 +33,7 @@ public class Article extends BaseEntity {
     @Basic
     @Column(name = "viewcount_")
     private long viewCount;
+    @JSONField(format="yyyy-MM-dd")
     @Basic
     @Column(name = "publishtime_")
     @Temporal(TemporalType.DATE)

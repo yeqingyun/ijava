@@ -16,9 +16,9 @@ var Request = (function($){
                     },
                     success: function(response){
                         if(response){
-                            if(!response.success){
+                           /* if(!response.success){
                                 Constant.error(response.msg);
-                            }
+                            }*/
                             callback(response);
                         }else{
                             Constant.error("数据加载出错");

@@ -4,6 +4,8 @@ import cn.ilovejava.baseBean.BaseRepository;
 import cn.ilovejava.baseBean.BaseService;
 import cn.ilovejava.dao.ArticleRepository;
 import cn.ilovejava.entity.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,4 +23,8 @@ public class ArticleService<T extends Article> extends BaseService<Article>{
 
     @Override
     public BaseRepository<Article> getBaseRepository() {return articleRepository;}
+
+    public Page<Article> findOrderByPublishTimeDesc(Pageable pageable){
+        return articleRepository.findOrderByPublishTimeDesc(pageable);
+    }
 }

@@ -1,10 +1,16 @@
 package cn.ilovejava.controller;
 
+import cn.ilovejava.entity.Article;
+import cn.ilovejava.service.ArticleService;
 import lombok.extern.log4j.Log4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -16,12 +22,16 @@ public class IndexController {
     /*@Resource PetService<Pet> petService;
     @Resource UserService<User> userService;
     @Resource JavaService<Java> javaService;*/
-
+    @Resource
+    private ArticleService<Article> articleService;
 
 
     @RequestMapping(value = {"","/"})
     public String index(ModelMap map){
         //log.info("index.html");
+        Pageable pageable = new PageRequest(0, 10);
+        Page<Article> page = articleService.findOrderByPublishTimeDesc(pageable);
+        map.put("newBlogs",page.getContent());
         return "index1";
     }
 
