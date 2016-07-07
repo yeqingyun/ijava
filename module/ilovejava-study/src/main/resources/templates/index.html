@@ -1,11 +1,511 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-    <meta charset="UTF-8" />
-    <title></title>
+<head lang="zh-cn">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>爱Java</title>
+
+    <!-- Bootstrap -->
+    <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            padding-top: 65px
+        }
+
+        .footer {
+            padding-top: 35px
+        }
+
+        /*第一块栏日期样式*/
+        .date {
+            color: grey;
+            font-family: verdana, '宋体', arial, sans-serif;
+        }
+
+        .row a {
+            color: #00608d;
+            font-size: 13px;
+            font-family: verdana, '宋体', arial, sans-serif
+        }
+        .row {
+            min-height: 250px;
+        }
+        .page-header span{
+            float: right;
+        }
+        .list-unstyled span{
+            float: right;
+            color: grey;
+            font-family: verdana, '宋体', arial, sans-serif;
+        }
+
+        /*li超链接超出部分省略号显示*/
+        .list-unstyled li {
+            display: block;
+            font-size: 14px;
+            height: 16px;
+            line-height: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${host}">Hello World</h1>
-<h1 th:text="${#dates.format('2010/01/03', 'yyyy-MM-dd')}">aaa</h1>
+
+
+<!--首页导航栏-->
+<div th:include="header :: head"></div>
+<!--首页导航栏结束-->
+
+
+<div class="container">
+
+    <!--左侧大栏区域-->
+    <div class="row">
+        <div class="col-xs-7 col-sm-8">
+            <div class="well well-lg">
+                <div class="page-header-lg">
+                    现在
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6">
+                        <a href="#" class="thumbnail">
+                            <img src="/imgs/mn.jpg"
+                                 alt="通用的占位符缩略图" />
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-xs-9 col-sm-9">
+                                <div class="page-header">
+                                    最新
+                                </div>
+                                <ul class="list-unstyled" th:each="blog:${newBlogs}">
+                                    <li><i class="fa fa-link"></i> <a th:text="${blog.title}" th:href="'/article/blog/'+${blog.id}" ></a></li>
+                                    <!--<li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 date">
+                                <div class="page-header">
+                                    <a href="#">更多</a>
+                                </div>
+                                <ul class="list-unstyled" th:each="blog:${newBlogs}">
+                                    <li th:text="${#dates.format(blog.publishTime, 'MM-dd')}"></li>
+                                    <!--<li>3-29</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--在此增加左侧大栏-->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            博文
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    Java<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="javaBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    JavaScript<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="javaScriptBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 25px">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    数据结构<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="dataStructureBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    计算机算法<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="arithmeticBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 25px">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    数据库技术<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="databaseBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    编程思想<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="programmingIdeaBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 25px">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    操作系统<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="operatingSystemBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    前端设计<span><a href="#">更多</a></span>
+                                </div>
+                                <ul id="pageDesionBlogs" class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            人生
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    沧海一粟<span><a href="#">更多</a></span>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="page-header">
+                                    星辰大海<span><a href="#">更多</a></span>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <!--<li>Item 1<span>07-01</span></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            在路上
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <ul class="list-unstyled">
+                                    <!--<li>Item 1</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!--右侧小菜单区域-->
+        <div class="col-xs-5 col-sm-4">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            这是什么网站？
+                        </div>
+                        <p>
+                            "I Love Java"是一个人建立与营运的IT知识交流学习的平台，目前暂时只收录我自己看过和学习过的文章和知识。
+                            但"I Love Java"一直处于更新状态中，将会不断开启新的功能，好了，介绍完毕，知道这是什么网站了吗？
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            在线人数
+                        </div>
+                        <div th:include="dataStatistics :: cps"></div>
+                        <!--<ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>-->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="well well-lg">
+                        <div class="page-header-lg">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!--<div class="row">
+        <div class="col-xs-6 col-sm-8">
+            <div class="well well-lg">
+                <div class="page-header-lg">
+                    标题
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="page-header">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="page-header">
+                            标题
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                            <li>Item 4</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+
+    <!--<div class="row footer">
+        <div class="col-xs-6 col-sm-12">
+            <p class="text-center">© 2016  test.net  All Rights Reserved.</p>
+        </div>
+    </div>-->
+    <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+        Javascript and reload this page!</h2></noscript>
+    <div>
+        <div>
+            <button id="connect" onclick="connect();">Connect</button>
+            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        </div>
+        <div id="conversationDiv">
+            <label>What is your name?</label><input type="text" id="name" />
+            <button id="sendName" onclick="sendName();">Send</button>
+            <p id="response"></p>
+        </div>
+    </div>
+
+
+    <!--首页页脚-->
+    <div th:include="footer :: foot"></div>
+    <!--首页页脚结束-->
+
+    <!--container结束-->
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--<script src="/bootstrap/js/jquery-1.11.1.min.js"></script>-->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/goldbootstrap/js/bootstrap.min.js"></script>
+<script src="/js/my/Request.js"></script>
+<script src="/js/my/Constant.js"></script>
+<!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 </body>
 </html>
+<script>
+$(function(){
+    /**
+     * 先加载 Java板块和Javascript板块
+     */
+    Request.get("/article/IndexJavaScriptBlogList",{},function(response){
+        $.each(response,function(i,blog){
+            var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/'+blog.id+'">'+blog.title+'</a><span>'+blog.publishTime.substring(5)+'</span></li>';
+            $("#javaScriptBlogs").append(blogtitle);
+        });
+    });
+    Request.get("/article/IndexJavaBlogList",{},function(response){
+        $.each(response,function(i,blog){
+            var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/'+blog.id+'">'+blog.title+'</a><span>'+blog.publishTime.substring(5)+'</span></li>';
+            $("#javaBlogs").append(blogtitle);
+        });
+    });
+    var firstBlogFlag = true,secondBlogFlag = true,thridBlogFlag = true;
+    $(window).scroll(function() {
+        var s =$(window).scrollTop();
+        if(firstBlogFlag){
+            if (s >= 250) {//数据结构，计算机算法板块
+                firstBlogFlag = false;
+                //数据结构
+                Request.get("/article/IndexDataStructureBlogList", {}, function (response) {
+                    $.each(response, function (i, blog) {
+                        var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/' + blog.id + '">' + blog.title + '</a><span>' + blog.publishTime.substring(5) + '</span></li>';
+                        $("#dataStructureBlogs").append(blogtitle);
+                    });
+                });
+                //计算机算法
+                Request.get("/article/IndexArithmeticBlogList", {}, function (response) {
+                    $.each(response, function (i, blog) {
+                        var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/' + blog.id + '">' + blog.title + '</a><span>' + blog.publishTime.substring(5) + '</span></li>';
+                        $("#arithmeticBlogs").append(blogtitle);
+                    });
+                });
+
+            }
+        }
+        if(secondBlogFlag){
+            if (s >= 340) {//数据库技术，编程思想板块
+                secondBlogFlag = false;
+                //数据库技术
+                Request.get("/article/IndexDatabaseBlogList", {}, function (response) {
+                    $.each(response, function (i, blog) {
+                        var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/' + blog.id + '">' + blog.title + '</a><span>' + blog.publishTime.substring(5) + '</span></li>';
+                        $("#databaseBlogs").append(blogtitle);
+                    });
+                });
+                //编程思想
+                Request.get("/article/IndexProgrammingIdeaBlogList", {}, function (response) {
+                    $.each(response, function (i, blog) {
+                        var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/' + blog.id + '">' + blog.title + '</a><span>' + blog.publishTime.substring(5) + '</span></li>';
+                        $("#programmingIdeaBlogs").append(blogtitle);
+                    });
+                });
+
+            }
+        }
+        if(thridBlogFlag){
+            if (s >= 430) {//操作系统，前端设计板块
+                thridBlogFlag = false;
+                //操作系统
+                Request.get("/article/IndexOperatingSystemBlogList", {}, function (response) {
+                    $.each(response, function (i, blog) {
+                        var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/' + blog.id + '">' + blog.title + '</a><span>' + blog.publishTime.substring(5) + '</span></li>';
+                        $("#operatingSystemBlogs").append(blogtitle);
+                    });
+                });
+                //前端设计
+                Request.get("/article/IndexPageDesignBlogList", {}, function (response) {
+                    $.each(response, function (i, blog) {
+                        var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/' + blog.id + '">' + blog.title + '</a><span>' + blog.publishTime.substring(5) + '</span></li>';
+                        $("#pageDesionBlogs").append(blogtitle);
+                    });
+                });
+
+            }
+        }
+        //滚动条到达底部,重新绑定滚动事件
+        if($(document).scrollTop() >= $(document).height() - $(window).height()){
+            $(window).scroll(function(){
+
+            });
+        }
+
+    });
+
+});
+</script>

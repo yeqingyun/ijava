@@ -27,4 +27,8 @@ public class ArticleService<T extends Article> extends BaseService<Article>{
     public Page<Article> findOrderByPublishTimeDesc(Pageable pageable){
         return articleRepository.findOrderByPublishTimeDesc(pageable);
     }
+
+    public Page<Article> findByModuleCodeOrderByPublishTimeDesc(String moduleCode,Pageable pageable){
+        return articleRepository.findByModuleCodeOrderByPublishTimeDesc(moduleCode,pageable);
+    }
 }

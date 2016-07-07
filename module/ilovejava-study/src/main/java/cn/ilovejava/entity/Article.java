@@ -17,7 +17,7 @@ public class Article extends BaseEntity {
     private String title;
     @Basic
     @Column(name = "modulecode_")
-    private int moduleCode;
+    private String moduleCode;
     @Basic
     @Column(name = "authorid_")
     private int author;
@@ -54,12 +54,11 @@ public class Article extends BaseEntity {
         this.title = title;
     }
 
-
-    public int getModuleCode() {
+    public String getModuleCode() {
         return moduleCode;
     }
 
-    public void setModuleCode(int moduleCode) {
+    public void setModuleCode(String moduleCode) {
         this.moduleCode = moduleCode;
     }
 
@@ -148,7 +147,6 @@ public class Article extends BaseEntity {
     @Override
     public int hashCode() {
         int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + moduleCode;
         result = 31 * result + author;
         result = 31 * result + typeId;
         result = 31 * result + (subtitle != null ? subtitle.hashCode() : 0);

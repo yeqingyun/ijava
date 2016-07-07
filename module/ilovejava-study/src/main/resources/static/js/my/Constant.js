@@ -8,7 +8,7 @@ var Constant = (function($){
                 text: msg,
                 time: 2000
             });*/
-            alert("msg");
+            alert(msg);
             return false;
         },
         _showLoading: function(text){

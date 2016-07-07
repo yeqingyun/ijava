@@ -28,11 +28,11 @@ public class IndexController {
 
     @RequestMapping(value = {"","/"})
     public String index(ModelMap map){
-        //log.info("index.html");
+        //log.info("indexstatic.html");
         Pageable pageable = new PageRequest(0, 10);
         Page<Article> page = articleService.findOrderByPublishTimeDesc(pageable);
         map.put("newBlogs",page.getContent());
-        return "index1";
+        return "index";
     }
 
     @RequestMapping(value = {"/hah"})
@@ -43,7 +43,7 @@ public class IndexController {
 
     @RequestMapping("/blogPage")
     public String blog(String id){
-        //log.info("blog.html");
+        //log.info("blogStatic.html");
         return "blog";
     }
 
