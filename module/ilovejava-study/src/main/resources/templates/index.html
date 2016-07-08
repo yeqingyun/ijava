@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="index">
 <head lang="zh-cn">
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -9,14 +9,17 @@
 
     <!-- Bootstrap -->
     <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="/css/lrtk.css" />
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <style>
         body {
             font-family: Georgia, "Times New Roman", Times, serif;
-            padding-top: 65px
+            padding-top: 65px;
         }
-
+        /*.row{
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
+            background-color:rgba(255, 255, 255, 0.3);
+        }*/
         .footer {
             padding-top: 35px
         }
@@ -55,18 +58,18 @@
             text-overflow: ellipsis;
             -o-text-overflow: ellipsis
         }
+
+
     </style>
 </head>
 <body>
-
 
 <!--首页导航栏-->
 <div th:include="header :: head"></div>
 <!--首页导航栏结束-->
 
-
-<div class="container">
-
+<div id="botAgregar"></div>
+<div class="container" style="opacity:0.8;filter:alpha(opacity=10);"><!-- style="opacity:0.4;filter:alpha(opacity=40);"-->
     <!--左侧大栏区域-->
     <div class="row">
         <div class="col-xs-7 col-sm-8">
@@ -264,7 +267,7 @@
                         <div class="page-header-lg">
                             在线人数
                         </div>
-                        <div th:include="dataStatistics :: cps"></div>
+                        <!--<div th:include="dataStatistics :: cps"></div>-->
                         <!--<ul class="list-unstyled">
                             <li>Item 1</li>
                             <li>Item 2</li>
@@ -385,7 +388,7 @@
             <p class="text-center">© 2016  test.net  All Rights Reserved.</p>
         </div>
     </div>-->
-    <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
+    <!--<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
         Javascript and reload this page!</h2></noscript>
     <div>
         <div>
@@ -397,7 +400,7 @@
             <button id="sendName" onclick="sendName();">Send</button>
             <p id="response"></p>
         </div>
-    </div>
+    </div>-->
 
 
     <!--首页页脚-->
@@ -411,15 +414,19 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<script src="/bootstrap/js/jquery-1.11.1.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/jquery/jquery.js"></script>
 <script src="/goldbootstrap/js/bootstrap.min.js"></script>
 <script src="/js/my/Request.js"></script>
 <script src="/js/my/Constant.js"></script>
+<script type="text/javascript" src="/js/my/yezi.js"></script>
 <!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 </body>
 </html>
 <script>
 $(function(){
+    $.AutomLeafStart({leafsfolder:"/imgs/yezi/",howmanyimgsare:8,initialleafs:10,maxYposition:-10,multiplyclick:true,multiplynumber:2,infinite:true,fallingsequence:6000});$("#botAgregar").on("click",function(){$.AutomLeafAdd({leafsfolder:"/imgs/yezi/",add:8})});
+
     /**
      * 先加载 Java板块和Javascript板块
      */
@@ -504,6 +511,7 @@ $(function(){
 
             });
         }
+
 
     });
 

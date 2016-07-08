@@ -1,14 +1,14 @@
 package cn.ilovejava;
 
-import cn.ilovejava.listener.ListenerSession;
 import lombok.extern.log4j.Log4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@ServletComponentScan
 @EnableTransactionManagement
 @SpringBootApplication
 @Log4j
@@ -23,8 +23,13 @@ public class IlovejavaStudyApplication {
 		SpringApplication.run(IlovejavaStudyApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public ServletListenerRegistrationBean ServletListenerRegistrationBean(){
-		return new ServletListenerRegistrationBean(new ListenerSession());
+		return new ServletListenerRegistrationBean(new MySessionListener());
 	}
+
+	@Bean
+	public HttpSessionListener httpSessionListener(){
+		return new MySessionListener();
+	}*/
 }
