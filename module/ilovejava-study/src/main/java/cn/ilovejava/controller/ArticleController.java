@@ -5,11 +5,13 @@ import cn.ilovejava.entity.Article;
 import cn.ilovejava.service.ArticleService;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.log4j.Log4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 
@@ -93,13 +95,53 @@ public class ArticleController{
     }
 
 
-
+    /**
+     * 通过id读取文章跳转到文章页
+     * @param id
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(value="/blog/{id}",method=RequestMethod.GET)
     public String get(@PathVariable("id") long id,ModelMap modelMap){
         Article article = articleService.findById(id);
         modelMap.put("art", article);
         return "blog";
     }
+
+    /**
+     * 通过类型读取文章跳转到“更多”页
+     * @param type 类型
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value="/blog/more/{type}/{page}",method=RequestMethod.GET)
+    public String more(@PathVariable("type") String type,@PathVariable(value = "page") Integer page,ModelMap modelMap){
+        Page<Article> pageResult ;
+        int size = 6;
+        Pageable pageParam = new PageRequest(page, size);
+        Long l = System.currentTimeMillis();
+        if(!StringUtils.isEmpty(type)&&type.equals("new"))
+            pageResult = articleService.findOrderByPublishTimeDesc(pageParam);
+        else
+            pageResult = articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_pageDesign.name(), pageParam);
+        System.out.println(System.currentTimeMillis()-l);
+        modelMap.put("page", pageResult);
+        for(Article article:pageResult.getContent()){
+            String articleContent = filterHtml(article.getContent().getContentText());
+            article.getContent().setContentText(articleContent);
+        }
+        return "more";
+    }
+
+    private String filterHtml(String s){
+        if(!StringUtils.isEmpty(s)){
+            String str=s.replaceAll("<[.[^<]]*>","");
+            return str;
+        }else{
+            return s;
+        }
+    }
+
 
     @ExceptionHandler
     public void exceptionHandler(Exception ex){

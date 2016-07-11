@@ -16,8 +16,8 @@
             font-family: Georgia, "Times New Roman", Times, serif;
             padding-top: 65px;
             background-repeat:REPEAT-Y;
-            background-image: url(imgs/back4.jpg);
-            background-size:100% 100%;
+            background-image: url(/imgs/back6.jpg);
+            background-size:100% 35%;
         }
         /*.row{
             filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
@@ -26,7 +26,9 @@
         .footer {
             padding-top: 35px
         }
-
+        .lazy {
+            display: none;
+        }
         /*第一块栏日期样式*/
         .date {
             color: grey;
@@ -75,32 +77,33 @@
 <div class="container" style="opacity:0.8;filter:alpha(opacity=10);">
     <!--左侧大栏区域-->
     <div class="row">
-        <div class="col-xs-7 col-sm-8">
+        <div class="col-xs-12 col-sm-8 col-md-8">
             <div class="well well-lg">
                 <div class="page-header-lg">
                     现在
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-sm-6">
+                    <div class="col-xs-5 col-sm-6 col-md-6">
                         <a href="#" class="thumbnail">
-                            <img src="/imgs/mn.jpg"
+                            <img data-original="/imgs/indexPhoto1.jpg" class="lazy"
                                  alt="通用的占位符缩略图" />
+                            <noscript><img src="/imgs/indexPhoto1.jpg" /></noscript>
                         </a>
                     </div>
-                    <div class="col-xs-6 col-sm-6">
+                    <div class="col-xs-7 col-sm-6 col-md-6">
                         <div class="row">
-                            <div class="col-xs-9 col-sm-9">
+                            <div class="col-xs-7 col-sm-9 col-md-9">
                                 <div class="page-header">
                                     最新
                                 </div>
                                 <ul class="list-unstyled" th:each="blog:${newBlogs}">
-                                    <li><i class="fa fa-link"></i> <a th:text="${blog.title}" th:href="'/article/blog/'+${blog.id}" ></a></li>
+                                    <li><i class="fa fa-link"></i> <a th:title="${blog.title}" th:text="${blog.title}" th:href="'/article/blog/'+${blog.id}" ></a></li>
                                     <!--<li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>-->
                                 </ul>
                             </div>
-                            <div class="col-xs-3 col-sm-3 date">
+                            <div class="col-xs-5 col-sm-3 col-md-3 date">
                                 <div class="page-header">
-                                    <a href="#">更多</a>
+                                    <a href="/article/blog/more/new/0">更多</a>
                                 </div>
                                 <ul class="list-unstyled" th:each="blog:${newBlogs}">
                                     <li th:text="${#dates.format(blog.publishTime, 'MM-dd')}"></li>
@@ -114,13 +117,13 @@
 
             <!--在此增加左侧大栏-->
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
                             博文
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     Java<span><a href="#">更多</a></span>
                                 </div>
@@ -128,7 +131,7 @@
                                     <!--<li>Item 1<span>07-01</span></li>-->
                                 </ul>
                             </div>
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     JavaScript<span><a href="#">更多</a></span>
                                 </div>
@@ -139,7 +142,7 @@
                         </div>
 
                         <div class="row" style="margin-top: 25px">
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     数据结构<span><a href="#">更多</a></span>
                                 </div>
@@ -147,7 +150,7 @@
                                     <!--<li>Item 1<span>07-01</span></li>-->
                                 </ul>
                             </div>
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     计算机算法<span><a href="#">更多</a></span>
                                 </div>
@@ -158,7 +161,7 @@
                         </div>
 
                         <div class="row" style="margin-top: 25px">
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     数据库技术<span><a href="#">更多</a></span>
                                 </div>
@@ -166,7 +169,7 @@
                                     <!--<li>Item 1<span>07-01</span></li>-->
                                 </ul>
                             </div>
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     编程思想<span><a href="#">更多</a></span>
                                 </div>
@@ -177,7 +180,7 @@
                         </div>
 
                         <div class="row" style="margin-top: 25px">
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     操作系统<span><a href="#">更多</a></span>
                                 </div>
@@ -185,7 +188,7 @@
                                     <!--<li>Item 1<span>07-01</span></li>-->
                                 </ul>
                             </div>
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     前端设计<span><a href="#">更多</a></span>
                                 </div>
@@ -200,13 +203,13 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
                             人生
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     沧海一粟<span><a href="#">更多</a></span>
                                 </div>
@@ -214,7 +217,7 @@
                                     <!--<li>Item 1<span>07-01</span></li>-->
                                 </ul>
                             </div>
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
                                     星辰大海<span><a href="#">更多</a></span>
                                 </div>
@@ -228,13 +231,13 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
                             在路上
                         </div>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <ul class="list-unstyled">
                                     <!--<li>Item 1</li>-->
                                 </ul>
@@ -249,23 +252,28 @@
 
 
         <!--右侧小菜单区域-->
-        <div class="col-xs-5 col-sm-4">
+        <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
-                            这是什么网站？
+                            I Love Java 《学习园地》
                         </div>
                         <p>
-                            "I Love Java"是一个人建立与营运的IT知识交流学习的平台，目前暂时只收录我自己看过和学习过的文章和知识。
-                            但"I Love Java"一直处于更新状态中，将会不断开启新的功能，好了，介绍完毕，知道这是什么网站了吗？
+                            当初设立这个版块只为收集好的文章和知识，
+                            但现在想把这个版块作为一个温馨安静的学习园地，阳光、温暖、安静、温柔、田园都是我喜欢的形容词，
+                            也将会是形容这个版块的最适合的词语。
+                        </p>
+                        <br/>
+                        <p>
+                            愿你喜欢。
                         </p>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
                             在线人数
@@ -289,7 +297,7 @@
 
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
                             标题
@@ -312,7 +320,7 @@
 
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
                             标题
@@ -417,11 +425,12 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<script src="/bootstrap/js/jquery-1.11.1.min.js"></script>-->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/js/jquery/jquery.js"></script>
-<script src="/goldbootstrap/js/bootstrap.min.js"></script>
-<script src="/js/my/Request.js"></script>
-<script src="/js/my/Constant.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="/goldbootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/my/Request.js"></script>
+<script type="text/javascript" src="/js/my/Constant.js"></script>
 <script type="text/javascript" src="/js/my/yezi.js"></script>
+<script type="text/javascript" src="/js/otherJs/jquery.lazyload.min.js"></script>
 <!--<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 </body>
@@ -430,6 +439,20 @@
 $(function(){
     $.AutomLeafStart({leafsfolder:"/imgs/yezi/",howmanyimgsare:8,initialleafs:10,maxYposition:-10,multiplyclick:true,multiplynumber:2,infinite:true,fallingsequence:6000});$("#botAgregar").on("click",function(){$.AutomLeafAdd({leafsfolder:"/imgs/yezi/",add:8})});
 
+    $("img.lazy").show().lazyload({
+        //placeholder : "imgs/Koala.jpg", //用图片提前占位
+        // placeholder,值为某一图片路径.此图片用来占据将要加载的图片的位置,待图片加载时,占位图则会隐藏
+        effect: "fadeIn" // 载入使用何种效果
+        // effect(特效),值有show(直接显示),fadeIn(淡入),slideDown(下拉)等,常用fadeIn
+        //threshold: 200, // 提前开始加载
+        // threshold,值为数字,代表页面高度.如设置为200,表示滚动条在离目标位置还有200的高度时就开始加载图片,可以做到不让用户察觉
+        //event: 'click',  // 事件触发时才加载
+        // event,值有click(点击),mouseover(鼠标划过),sporty(运动的),foobar(…).可以实现鼠标莫过或点击图片才开始加载,后两个值未测试…
+       // container: $("#container"),  // 对某容器中的图片实现效果
+        // container,值为某容器.lazyload默认在拉动浏览器滚动条时生效,这个参数可以让你在拉动某DIV的滚动条时依次加载其中的图片
+        //failurelimit : 10 // 图片排序混乱时
+        // failurelimit,值为数字.lazyload默认在找到第一张不在可见区域里的图片时则不再继续加载,但当HTML容器混乱的时候可能出现可见区域内图片并没加载出来的情况,failurelimit意在加载N张可见区域外的图片,以避免出现这个问题.
+    });
     /**
      * 先加载 Java板块和Javascript板块
      */
