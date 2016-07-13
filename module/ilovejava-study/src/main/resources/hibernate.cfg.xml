@@ -10,6 +10,7 @@
       <mapping class="cn.ilovejava.entity.Module"/>
       <mapping class="cn.ilovejava.entity.JavaArticleEntity"/>
     <mapping class="cn.ilovejava.entity.ArticleContent"/>
+    <mapping class="cn.ilovejava.entity.ArticleComment"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

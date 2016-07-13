@@ -10,8 +10,8 @@
 
     <!-- Bootstrap -->
     <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/wangEditor/wangEditor.min.css"/>
     <style>
         body {
             padding-top: 65px
@@ -91,6 +91,7 @@
         body {
             font-family: Georgia, "Times New Roman", Times, serif;
             color: #555;
+            padding-top: 65px;
         }
 
         @media (min-width: 1200px) {
@@ -172,17 +173,6 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-xs-8 col-sm-8 col-md-offset-1">
-            <div class="well well-lg">
-                <div class="page-header">
-                    <strong>评论</strong>
-                </div>
-                暂无评论
-            </div>
-        </div>
-    </div>
-
 
     <!--评论输入框-->
     <div class="row">
@@ -191,25 +181,98 @@
                 <form role="form">
                     <div class="form-group">
                         <label>发表评论</label>
-                        <textarea name="comment" class="form-control" rows="4"></textarea>
                         <br/>
-                        <input class="btn btn-default" type="submit" value="提交" />
+                        <!--<label for="name">名称</label><input type="text" style="width: 200px" class="form-control" id="name"
+                                                           placeholder="请输入名称" />-->
+                        <input type="hidden" id="articleId" th:value="${art.id}" />
+                        <textarea id="commentEdit" name="comment" class="form-control" rows="13"></textarea>
+
+                        <br/>
+                        <input id="submitComment" class="btn btn-default" type="button" value="提交" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-
+    <div class="row">
+        <div class="col-xs-8 col-sm-8 col-md-offset-1">
+            <div class="well well-lg">
+                <div class="page-header">
+                    <strong>评论</strong>
+                </div>
+                <div id="commentList">
+                    <!--<div class="panel panel-success">
+                        <div class="panel-heading" style="line-height: 40px;background-color: rgba(149, 177, 124, 0.12);">
+                            <div><img style="width: 40px;height: 40px" src="/imgs/back3.jpg" class="img-responsive img-circle" alt="Cinque Terre"/></div>
+                            <div style="margin-top:-40px;padding-left:50px;">192.1.6.1丨2016-07-13：</div>
+                        </div>
+                        <div class="panel-body">
+                            阿大声道
+                        </div>
+                    </div>-->
+                    <!--<div class="page-header">
+                        <span class="col-md-2"><img style="width: 40px;height: 40px" src="/imgs/back3.jpg" class="img-responsive img-circle" alt="Cinque Terre"/></span><span class="col-md-10" style="margin-left:-10px;height: 40px;line-height: 40px">212</span>
+                        <div><p>哈哈哈哈哈哈</p><p>哈哈哈哈哈哈</p><p>哈哈哈哈哈哈</p></div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <div th:include="footer :: foot"></div>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="/js/jquery/jquery.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/goldbootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/my/Request.js"></script>
+<script type="text/javascript" src="/js/my/Constant.js"></script>
+<script type="text/javascript" src="/js/otherJs/wangEditor.min.js"></script>
 </body>
 </html>
+<script type="text/javascript">
+    $(function(){
+        var editor = new wangEditor('commentEdit');
+        editor.create();
+
+        /**
+         *  加载评论
+         */
+        var loadComment = function(){
+            var articleId = $("#articleId").val();
+            Request.get("/articleComment/list/"+articleId,{},function(response){
+                $("#commentList").empty();
+                $.each(response,function(i,comment){
+                    var commentResult = ' <div class="panel panel-success"> <div class="panel-heading" style="line-height: 40px;background-color: rgba(149, 177, 124, 0.12);">';
+                    commentResult += '<div><img style="width: 40px;height: 40px" src="/imgs/back3.jpg" class="img-responsive img-circle" alt="Cinque Terre"/></div>';
+                    commentResult += '<div style="margin-top:-40px;padding-left:50px;">'+comment.name+'丨'+comment.publishTime+'：</div>';
+                    commentResult += '</div> <div class="panel-body">';
+                    commentResult += comment.commentText;
+                    commentResult += "</div></div>";
+                    $("#commentList").append(commentResult);
+                });
+            });
+        };
+        loadComment();
+
+        /**
+         * 提交评论
+         */
+        $("#submitComment").on("click",function(){
+            var commentvalue = $("#commentEdit").val(),
+                articleId = $("#articleId").val(),
+                data = {'article.id' : articleId ,'commentText' : commentvalue};
+            editor.$txt.html('<p><br/></p>');
+            Request.post("/articleComment/commitComment", data, function (response) {
+
+                //刷新评论
+                loadComment();
+            });
+        });
+
+
+
+    });
+</script>

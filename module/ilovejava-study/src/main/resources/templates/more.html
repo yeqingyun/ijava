@@ -8,8 +8,8 @@
     <title>爱Java</title>
 
     <!-- Bootstrap -->
-    <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/goldbootstrap/css/bootstrap.min.css" th:href="@{/goldbootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="/font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
     <style>
         body {
             font-family: Georgia, "Times New Roman", Times, serif;
@@ -77,7 +77,7 @@
                 <div class="page-header-lg">
                     最新
                 </div>
-                <div class="well" th:each="blog:${page.content}">
+                <div class="well" th:each="blog:${page.getContent()}">
                     <div class="page-header-lg">
                         <a th:href="'/article/blog/'+${blog.id}" th:text="${blog.title}"></a>
                     </div>
@@ -85,26 +85,13 @@
 
                     </p>
                 </div>
-                <!--<div class="well">
-                    <div class="page-header-lg">
-                        <a href="#">I Love Java 《学习园地》</a>
-                    </div>
-                    <p>
-                        当初设立这个版块只为收集好的文章和知识，
-                        但现在想把这个版块作为一个温馨安静的学习园地，阳光、温暖、安静、温柔、田园都是我喜欢的形容词，
-                        也将会是形容这个版块的最适合的词语。当初设立这个版块只为收集好的文章和知识，
-                        但现在想把这个版块作为一个温馨安静的学习园地，阳光、温暖、安静、温柔、田园都是我喜欢的形容词，
-                    </p>
-                </div>-->
                 <div style="text-align:center;margin:0 auto">
                     <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <li th:if="${currentPage gt 1}"><a href="#">&laquo;</a></li>
+                        <li th:if="${totalPage eq 0}" class="active"><a href="#">1</a></li>
+                        <li th:if="${totalPage !=0 and currentPage le totalPage - 5}" th:each="i : ${#numbers.sequence( currentPage, currentPage+5)}" th:class="${i == currentPage}?'active':''"><a href="#" th:href="${'/article/blog/more/'+type+'/'+(i-1)}" th:text="${i}"></a></li>
+                        <li th:if="${totalPage !=0 and currentPage > totalPage - 5}" th:each="i : ${#numbers.sequence( currentPage, totalPage)}" th:class="${i == currentPage}?'active':''"><a href="#" th:href="${'/article/blog/more/'+type+'/'+(i-1)}" th:text="${i}"></a></li>
+                        <li th:if="${currentPage lt totalPage}"><a href="#">&raquo;</a></li>
                     </ul>
                 </div>
             </div>

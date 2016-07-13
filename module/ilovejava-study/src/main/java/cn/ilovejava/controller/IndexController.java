@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -102,4 +103,8 @@ public class IndexController {
         Pageable pageable = new PageRequest(page, size, sort);
         return petService.findPage(pageable);
     }*/
+    @ExceptionHandler
+    public void exceptionHandler(Exception ex){
+        ex.printStackTrace();
+    }
 }

@@ -12,7 +12,9 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/4/12.
@@ -30,11 +32,17 @@ public class VelocityTest{
         //String rootPath=this.getClass().getClassLoader().getResource("/").getFile() + "../../src/main/cn/ilovejava/";
         String rootPath = System.getProperty("user.dir").replace("\\","/")+"/src/main/java/cn/ilovejava/";
         String entityPath = rootPath+"entity";
+        List<String> fileter = new ArrayList();
+        fileter.add("Greeting.java");
+        fileter.add("HelloMessage.java");
 
         File entityDe = new File(entityPath);
         File[] entitys = entityDe.listFiles();
         for(File entity:entitys){
             String FileName = entity.getName();
+            if(fileter.contains(FileName)){
+                continue;
+            }
             FileName = FileName.substring(0,FileName.indexOf("."));
             /*if(FileName.indexOf("Base")>=0||FileName.indexOf("User")>=0)
                 continue;*/

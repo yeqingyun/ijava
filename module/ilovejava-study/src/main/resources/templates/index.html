@@ -96,8 +96,8 @@
                                 <div class="page-header">
                                     最新
                                 </div>
-                                <ul class="list-unstyled" th:each="blog:${newBlogs}">
-                                    <li><i class="fa fa-link"></i> <a th:title="${blog.title}" th:text="${blog.title}" th:href="'/article/blog/'+${blog.id}" ></a></li>
+                                <ul class="list-unstyled">
+                                    <li th:each="blog:${newBlogs}"><i class="fa fa-link"></i> <a th:title="${blog.title}" th:text="${blog.title}" th:href="'/article/blog/'+${blog.id}" ></a></li>
                                     <!--<li><i class="fa fa-link"></i> <a href="/blogPage?id=1">要想成为优秀的程序员？多阅读是关键</a></li>-->
                                 </ul>
                             </div>
@@ -105,8 +105,8 @@
                                 <div class="page-header">
                                     <a href="/article/blog/more/new/0">更多</a>
                                 </div>
-                                <ul class="list-unstyled" th:each="blog:${newBlogs}">
-                                    <li th:text="${#dates.format(blog.publishTime, 'MM-dd')}"></li>
+                                <ul class="list-unstyled">
+                                    <li th:each="blog:${newBlogs}" th:text="${#dates.format(blog.publishTime, 'MM-dd')}"></li>
                                     <!--<li>3-29</li>-->
                                 </ul>
                             </div>
@@ -125,7 +125,7 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    Java<span><a href="#">更多</a></span>
+                                    Java<span><a href="/article/blog/more/blog_java/0">更多</a></span>
                                 </div>
                                 <ul id="javaBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -133,7 +133,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    JavaScript<span><a href="#">更多</a></span>
+                                    JavaScript<span><a href="/article/blog/more/blog_javaScript/0">更多</a></span>
                                 </div>
                                 <ul id="javaScriptBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -144,7 +144,7 @@
                         <div class="row" style="margin-top: 25px">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    数据结构<span><a href="#">更多</a></span>
+                                    数据结构<span><a href="/article/blog/more/blog_dataStructure/0">更多</a></span>
                                 </div>
                                 <ul id="dataStructureBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -152,7 +152,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    计算机算法<span><a href="#">更多</a></span>
+                                    计算机算法<span><a href="/article/blog/more/blog_arithmetic/0">更多</a></span>
                                 </div>
                                 <ul id="arithmeticBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -163,7 +163,7 @@
                         <div class="row" style="margin-top: 25px">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    数据库技术<span><a href="#">更多</a></span>
+                                    数据库技术<span><a href="/article/blog/more/blog_database/0">更多</a></span>
                                 </div>
                                 <ul id="databaseBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    编程思想<span><a href="#">更多</a></span>
+                                    编程思想<span><a href="/article/blog/more/blog_programmingIdea/0">更多</a></span>
                                 </div>
                                 <ul id="programmingIdeaBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -182,7 +182,7 @@
                         <div class="row" style="margin-top: 25px">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    操作系统<span><a href="#">更多</a></span>
+                                    操作系统<span><a href="/article/blog/more/blog_operatingSystem/0">更多</a></span>
                                 </div>
                                 <ul id="operatingSystemBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->
@@ -190,7 +190,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="page-header">
-                                    前端设计<span><a href="#">更多</a></span>
+                                    前端设计<span><a href="/article/blog/more/blog_pageDesign/0">更多</a></span>
                                 </div>
                                 <ul id="pageDesionBlogs" class="list-unstyled">
                                     <!--<li>Item 1<span>07-01</span></li>-->

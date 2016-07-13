@@ -117,15 +117,18 @@ public class ArticleController{
     @RequestMapping(value="/blog/more/{type}/{page}",method=RequestMethod.GET)
     public String more(@PathVariable("type") String type,@PathVariable(value = "page") Integer page,ModelMap modelMap){
         Page<Article> pageResult ;
-        int size = 6;
+        int size = 7;
         Pageable pageParam = new PageRequest(page, size);
         Long l = System.currentTimeMillis();
         if(!StringUtils.isEmpty(type)&&type.equals("new"))
             pageResult = articleService.findOrderByPublishTimeDesc(pageParam);
         else
-            pageResult = articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_pageDesign.name(), pageParam);
+            pageResult = articleService.findByModuleCodeOrderByPublishTimeDesc(type, pageParam);
         System.out.println(System.currentTimeMillis()-l);
         modelMap.put("page", pageResult);
+        modelMap.put("currentPage", page+1);
+        modelMap.put("totalPage",pageResult.getTotalPages());
+        modelMap.put("type",type);
         for(Article article:pageResult.getContent()){
             String articleContent = filterHtml(article.getContent().getContentText());
             article.getContent().setContentText(articleContent);
