@@ -13,6 +13,7 @@ public class IlovejavaStudyApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

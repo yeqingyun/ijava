@@ -4,6 +4,8 @@ import cn.ilovejava.baseBean.BaseRepository;
 import cn.ilovejava.baseBean.BaseService;
 import cn.ilovejava.dao.ArticleCommentRepository;
 import cn.ilovejava.entity.ArticleComment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,5 +27,9 @@ public class ArticleCommentService<T extends ArticleComment> extends BaseService
 
     public List<ArticleComment> findArticleCommentByArticleIdOrderByDate(Long id){
         return articleCommentRepository.findByArticleIdOrderByPublishTimeDesc(id);
+    }
+
+    public Page<ArticleComment> findByArticleIdOrderByPublishTimeDesc(Long id,Pageable pageable){
+        return articleCommentRepository.findByArticleIdOrderByPublishTimeDesc(id,pageable);
     }
 }

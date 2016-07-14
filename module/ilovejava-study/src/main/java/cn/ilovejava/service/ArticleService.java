@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * Created by yeqy on 2016-06-30 15:15:35.
@@ -29,6 +30,10 @@ public class ArticleService<T extends Article> extends BaseService<Article>{
     }
 
     public Page<Article> findByModuleCodeOrderByPublishTimeDesc(String moduleCode,Pageable pageable){
-        return articleRepository.findByModuleCodeOrderByPublishTimeDesc(moduleCode,pageable);
+        return articleRepository.findByModuleCodeOrderByPublishTimeDesc(moduleCode, pageable);
+    }
+
+    public List<Long[]> findLikeAndDisLikeById(Long id){
+        return articleRepository.findLikeAndDisLikeById(id);
     }
 }

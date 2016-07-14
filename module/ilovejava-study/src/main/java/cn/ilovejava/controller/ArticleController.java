@@ -2,7 +2,9 @@ package cn.ilovejava.controller;
 
 import cn.ilovejava.constant.BlogModule;
 import cn.ilovejava.entity.Article;
+import cn.ilovejava.function.SerializeFunction;
 import cn.ilovejava.service.ArticleService;
+import cn.ilovejava.util.JsonResult;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.log4j.Log4j;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
 * Created by yeqy on 2016-06-30 15:15:35.
@@ -27,7 +31,7 @@ public class ArticleController{
 
 
     /**
-     * åŠ è½½é¦–é¡µå„ä¸ªåšå®¢æ¨¡å—çš„å±•ç¤ºæ•°æ®
+     * ¼ÓÔØÊ×Ò³¸÷¸ö²©¿ÍÄ£¿éµÄÕ¹Ê¾Êı¾İ
      * @return DataJson
      */
     @RequestMapping(value = "/IndexJavaBlogList",method=RequestMethod.GET)
@@ -96,7 +100,7 @@ public class ArticleController{
 
 
     /**
-     * é€šè¿‡idè¯»å–æ–‡ç« è·³è½¬åˆ°æ–‡ç« é¡µ
+     * Í¨¹ıid¶ÁÈ¡ÎÄÕÂÌø×ªµ½ÎÄÕÂÒ³
      * @param id
      * @param modelMap
      * @return
@@ -104,13 +108,15 @@ public class ArticleController{
     @RequestMapping(value="/blog/{id}",method=RequestMethod.GET)
     public String get(@PathVariable("id") long id,ModelMap modelMap){
         Article article = articleService.findById(id);
+        article.setViewCount(article.getViewCount() + 1);
+        articleService.update(article);
         modelMap.put("art", article);
         return "blog";
     }
 
     /**
-     * é€šè¿‡ç±»å‹è¯»å–æ–‡ç« è·³è½¬åˆ°â€œæ›´å¤šâ€é¡µ
-     * @param type ç±»å‹
+     * Í¨¹ıÀàĞÍ¶ÁÈ¡ÎÄÕÂÌø×ªµ½¡°¸ü¶à¡±Ò³
+     * @param type ÀàĞÍ
      * @param modelMap
      * @return
      */
@@ -126,8 +132,8 @@ public class ArticleController{
             pageResult = articleService.findByModuleCodeOrderByPublishTimeDesc(type, pageParam);
         System.out.println(System.currentTimeMillis()-l);
         modelMap.put("page", pageResult);
-        modelMap.put("currentPage", page+1);
-        modelMap.put("totalPage",pageResult.getTotalPages());
+        modelMap.put("currentPage", page + 1);
+        modelMap.put("totalPage", pageResult.getTotalPages());
         modelMap.put("type",type);
         for(Article article:pageResult.getContent()){
             String articleContent = filterHtml(article.getContent().getContentText());
@@ -135,6 +141,42 @@ public class ArticleController{
         }
         return "more";
     }
+
+    @RequestMapping(value="/blog/like",method=RequestMethod.POST)
+    @ResponseBody
+    public String more(long id,boolean like,HttpServletRequest request) throws IOException, ClassNotFoundException {
+        String name = request.getRemoteAddr();
+        JsonResult jr = new JsonResult();
+        int result = SerializeFunction.likeAndIpAuth(id, name, like);
+        if(result == 0){//Ö®Ç°²»´æÔÚµÄ
+            Article article = articleService.findById(id);
+            if(like){
+                article.setLike(article.getLike()+1);
+            }else{
+                article.setDislike(article.getDislike()+1);
+            }
+            articleService.update(article);
+            jr.setSuccess(true);
+            jr.setMsg(like ? "¿´µÃ³öÀ´£¬ÄãºÜÏ²»¶" : "ºÜÒÅº¶£¬ÏÂ´ÎÄã»áÏ²»¶µÄ");
+            //List<Long[]> ls = articleService.findLikeAndDisLikeById(id);
+            jr.addData("like",article.getLike());
+            jr.addData("dislike",article.getDislike());
+        }else if(result == 1 && like){//ÒÑ¾­Ï²»¶¹ı
+            jr.setSuccess(false);
+            jr.setMsg("ÄãÒ²Ì«Ï²»¶ÁË..");
+        }else if(result == 2 && !like){//ÒÑ¾­²»Ï²»¶¹ı
+            jr.setSuccess(false);
+            jr.setMsg("²»ÖÁÓÚÕâÃ´ÌÖÑá°É");
+        }else if(result == 1){//ÒÑ¾­Ï²»¶¹ıÁË£¬ÓÖµã»÷²»Ï²»¶
+            jr.setSuccess(false);
+            jr.setMsg("ÄãÒÑ¾­Ï²»¶¹ıÁË£¬²»ÄÜ·´»ÚÅ¶");
+        }else if(result == 2){//ÒÑ¾­²»Ï²»¶¹ıÁË£¬ÓÖµã»÷Ï²»¶
+            jr.setSuccess(false);
+            jr.setMsg("ÄãÒÑ¾­ÌÖÑá¹ıÁË£¬²»ÄÜ·´»ÚÅ¶");
+        }
+        return JSON.toJSONString(jr);
+    }
+
 
     private String filterHtml(String s){
         if(!StringUtils.isEmpty(s)){

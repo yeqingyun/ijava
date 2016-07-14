@@ -12,6 +12,7 @@
     <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/css/wangEditor/wangEditor.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert/sweetalert.css"/>
     <style>
         body {
             padding-top: 65px
@@ -22,7 +23,6 @@
         .footer {
             padding-top: 35px
         }
-
         .blog-views {
             border-left: 1px solid darkgray;
             padding-left: 10px
@@ -116,7 +116,7 @@
 
 
         <!--博客主体开始-->
-        <div class="col-xs-8 col-sm-8 col-md-offset-1">
+        <div id="blogBody" class="col-xs-8 col-sm-8 col-md-offset-1">
             <div class="well well-lg">
                 <div class="blog-title">
                     <div class="page-header text-center">
@@ -134,8 +134,8 @@
 
 
                 <div class="blog-footter">
-                    <span class="blog-like"><i class="fa fa-heart fa-lg"></i>喜欢[<obj th:text="${art.like}">0</obj>]</span><span class="blog-unlike"><i
-                        class="fa fa-heart-o fa-lg"></i>不喜欢[<obj th:text="${art.dislike}">0</obj>]</span>
+                    <span class="blog-like"><i class="fa fa-heart fa-lg"></i>喜欢[<obj th:text="${art.like}">0</obj>]</span>
+                    <span class="blog-unlike"><i class="fa fa-heart-o fa-lg"></i>不喜欢[<obj th:text="${art.dislike}">0</obj>]</span>
 
                     <p>
 
@@ -216,6 +216,15 @@
                         <div><p>哈哈哈哈哈哈</p><p>哈哈哈哈哈哈</p><p>哈哈哈哈哈哈</p></div>
                     </div>-->
                 </div>
+
+                <div style="text-align:center;margin:0 auto">
+                    <ul id="commentPageBody" class="pagination">
+                        <!--<li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">&raquo;</a></li>-->
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
@@ -230,6 +239,7 @@
 <script type="text/javascript" src="/js/my/Request.js"></script>
 <script type="text/javascript" src="/js/my/Constant.js"></script>
 <script type="text/javascript" src="/js/otherJs/wangEditor.min.js"></script>
+<script type="text/javascript" src="/js/otherJs/sweetalert.min.js"></script>
 </body>
 </html>
 <script type="text/javascript">
@@ -240,11 +250,19 @@
         /**
          *  加载评论
          */
-        var loadComment = function(){
+        function loadComment(page){
             var articleId = $("#articleId").val();
-            Request.get("/articleComment/list/"+articleId,{},function(response){
+            if(!page)
+                page = 0;
+
+            Request.get("/articleComment/list/"+articleId+"/"+page,{},function(response){
                 $("#commentList").empty();
-                $.each(response,function(i,comment){
+                $("#commentPageBody").empty();
+                if(response.totalPages == 0){
+                    $("#commentList").append("<p>暂无评论</p>");
+                    return;
+                }
+                $.each(response.content,function(i,comment){
                     var commentResult = ' <div class="panel panel-success"> <div class="panel-heading" style="line-height: 40px;background-color: rgba(149, 177, 124, 0.12);">';
                     commentResult += '<div><img style="width: 40px;height: 40px" src="/imgs/back3.jpg" class="img-responsive img-circle" alt="Cinque Terre"/></div>';
                     commentResult += '<div style="margin-top:-40px;padding-left:50px;">'+comment.name+'丨'+comment.publishTime+'：</div>';
@@ -253,10 +271,46 @@
                     commentResult += "</div></div>";
                     $("#commentList").append(commentResult);
                 });
+                var commentPages='',viewPage = page+1;
+                if(viewPage>1){
+                    commentPages +='<li><a href="javascript:;">&laquo;</a></li>';
+                }
+                if(response.totalPages-5 >= viewPage){
+                    for(var i=viewPage;response.totalPages - 5 >= i;i++){
+                        if (viewPage == i) {
+                            commentPages += '<li class="active"><a href="javascript:;">' + i + '</a></li>';
+                        } else{
+                            commentPages += '<li><a href="javascript:;">' + i + '</a></li>';
+                        }
+                    }
+                }else{
+                    for(var i=viewPage;response.totalPages >= i;i++) {
+                        if (viewPage == i) {
+                            commentPages += '<li class="active"><a href="javascript:;">' + i + '</a></li>';
+                        } else{
+                            commentPages += '<li><a href="javascript:;">' + i + '</a></li>';
+                        }
+                    }
+                }
+                if(response.totalPages > viewPage){
+                    commentPages +='<li><a href="javascript:;">&raquo;</a></li>';
+                }
+
+                $("#commentPageBody").append(commentPages);
+
+                $("#commentPageBody li:not(.active) a").click(function(){
+                    var pagetext = $(this).text();
+                    if(pagetext == "»"){
+                        loadComment(viewPage);
+                    }else if(pagetext == "«"){
+                        loadComment(page-1);
+                    }else{
+                        loadComment(pagetext-1);
+                    }
+                });
             });
         };
         loadComment();
-
         /**
          * 提交评论
          */
@@ -266,10 +320,40 @@
                 data = {'article.id' : articleId ,'commentText' : commentvalue};
             editor.$txt.html('<p><br/></p>');
             Request.post("/articleComment/commitComment", data, function (response) {
-
+                if(response.success){
+                    swal("评论成功!", "", "success");
+                }else{
+                    swal(response.msg, "", "error");
+                }
                 //刷新评论
                 loadComment();
             });
+        });
+
+        $(".blog-footter span").on("click",function(){
+            var ths = $(this);
+            var articleId = $("#articleId").val(),
+                data = new Object();
+                data.id = articleId;
+            if($(this).attr("class") == "blog-like"){//喜欢
+                data.like = true;
+            }else{//不喜欢
+                data.like = false;
+            }
+
+            Request.post("/article/blog/like", data, function (response) {
+                if(response.success){
+                    swal(response.msg, "", "success");
+                    if(data.like){
+                        ths.find("obj").text(response.data.like);
+                    }else{
+                        ths.find("obj").text(response.data.dislike);
+                    }
+                }else{
+                    swal(response.msg, "", "error");
+                }
+            });
+
         });
 
 

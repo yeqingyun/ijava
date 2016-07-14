@@ -120,7 +120,9 @@ public class BaseEntity implements Serializable {
         Date now = new Date();
         this.createdAt = now;
         this.updatedAt = now;
+        this.status = Boolean.TRUE;
     }
+
 
     @PreUpdate
     public void setTimeWhenUpdate(){
