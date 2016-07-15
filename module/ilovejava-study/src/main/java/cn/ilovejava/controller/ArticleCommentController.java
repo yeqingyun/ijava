@@ -17,8 +17,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
-* Created by yeqy on 2016-07-13 16:35:11.
-*/
+ * Created by yeqy on 2016-07-13 16:35:11.
+ */
 @Log4j
 @Controller
 @RequestMapping("articleComment")
@@ -41,7 +41,7 @@ public class ArticleCommentController{
     @ResponseBody
     public String commitComment(ArticleComment articleComment,HttpServletRequest request){
         if(articleComment.getArticle()==null || articleComment.getArticle().getId() == null || articleService.findById(articleComment.getArticle().getId())== null){
-            JsonResult jr = new JsonResult(false,"ÎÄÕÂ²»´æÔÚ»òÕßÒÑ±»É¾³ı");
+            JsonResult jr = new JsonResult(false,"æ–‡ç« ä¸å­˜åœ¨æˆ–è€…å·²è¢«åˆ é™¤");
             return JSON.toJSONString(jr);
             //return "false";
         }

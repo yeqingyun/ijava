@@ -33,6 +33,10 @@ public class ArticleService<T extends Article> extends BaseService<Article>{
         return articleRepository.findByModuleCodeOrderByPublishTimeDesc(moduleCode, pageable);
     }
 
+    public Page<Article> findOrderByLikeDesc(Pageable pageable){
+        return articleRepository.findOrderByLikeDesc(pageable);
+    }
+
     public List<Long[]> findLikeAndDisLikeById(Long id){
         return articleRepository.findLikeAndDisLikeById(id);
     }

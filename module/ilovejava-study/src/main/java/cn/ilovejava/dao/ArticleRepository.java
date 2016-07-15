@@ -22,4 +22,7 @@ public interface ArticleRepository<T extends Article> extends BaseRepository<Art
     @Query("select a.like,a.dislike from Article a where a.id =:id")
     public List<Long[]> findLikeAndDisLikeById(@Param("id")Long id);
 
+    @Query("select a from Article a order by a.like desc,a.publishTime desc")
+    public Page<Article> findOrderByLikeDesc(Pageable pageable);
+
 }

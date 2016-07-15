@@ -20,7 +20,9 @@ public class SerializeFunction {
      * @throws ClassNotFoundException
      */
     public static int likeAndIpAuth(long id,String name,boolean like) throws IOException, ClassNotFoundException {
-        File file = new File(SerializeFunction.class.getResource("/likeAndIpAuth").getFile());
+        File file = new File(System.getProperty("user.dir")+File.separator+"likeAndIpAuth");
+        if(!file.exists())
+            file.createNewFile();
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
             Map<Long,List[]> obj = (Map<Long,List[]>)objectInputStream.readObject();//文件中已有数据

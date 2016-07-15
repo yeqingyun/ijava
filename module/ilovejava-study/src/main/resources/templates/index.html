@@ -11,24 +11,28 @@
     <link href="/goldbootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/lrtk.css" />
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/my/main.css"/>
     <style>
-        body {
-            font-family: Georgia, "Times New Roman", Times, serif;
-            padding-top: 65px;
-            background-repeat:REPEAT-Y;
-            background-image: url(/imgs/back6.jpg);
-            background-size:100% 35%;
+        @media (min-height: 458px){
+            body {
+                font-family: Georgia, "Times New Roman", Times, serif;
+                padding-top: 65px;
+                background-repeat:REPEAT-Y;
+                background-image: url(/imgs/back6.jpg);
+                background-size:100% 50%;
+            }
         }
-        /*.row{
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
-            background-color:rgba(255, 255, 255, 0.3);
-        }*/
-        .footer {
-            padding-top: 35px
+        @media (max-height: 768px){
+            body {
+                font-family: Georgia, "Times New Roman", Times, serif;
+                padding-top: 65px;
+                background-repeat:REPEAT-Y;
+                background-image: url(/imgs/back6.jpg);
+                background-size:100% 35%;
+            }
         }
-        .lazy {
-            display: none;
-        }
+
+
         /*第一块栏日期样式*/
         .date {
             color: grey;
@@ -276,23 +280,19 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
-                            小老鼠
+                            最勤奋的人儿
                         </div>
                         <!--<div th:include="dataStatistics :: cps"></div>-->
                         <!--<ul class="list-unstyled">
                             <li>Item 1</li>
                             <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
                         </ul>-->
-                        <!--<object id="mouse" type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/hamster/hamster.swf?" width="300" height="225"><param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param></object>-->
-
+                        <div style="padding-bottom: 13px;margin: -17px 0 17px;">
+                            <div><img style="width: 40px;height: 40px" src="/imgs/back3.jpg" class="img-responsive img-circle" alt="Cinque Terre"/></div><div style="margin-top:-30px;padding-left:55px;">ilovejava</div>
+                        </div>
+                        <div style="padding-bottom: 13px;margin: -17px 0 17px;">
+                            <div><img style="width: 40px;height: 40px" src="/imgs/back3.jpg" class="img-responsive img-circle" alt="Cinque Terre"/></div><div style="margin-top:-30px;padding-left:55px;">helloworld</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -302,19 +302,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
-                            标题
+                            最受欢迎
                         </div>
-                        <ul class="list-unstyled">
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
+                        <ul id="weclomeBlog" class="list-unstyled">
+                            <!--<li><i class="fa fa-heart fa-lg">13</i><a style="margin-left: 10px" href="#"></a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -325,20 +316,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="well well-lg">
                         <div class="page-header-lg">
-                            标题
+                            关注公众号
                         </div>
-                        <ul class="list-unstyled">
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                            <li>Item 4</li>
-                        </ul>
+                        <a href="#" class="thumbnail">
+                            <img style="width: 70%;height: 70%" data-original="/imgs/weixin.jpg" class="lazy"
+                                 alt="通用的占位符缩略图" />
+                            <noscript><img src="/imgs/weixin.jpg" /></noscript>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -458,6 +442,7 @@ $(function(){
     /**
      * 先加载 Java板块和Javascript板块
      */
+
     Request.get("/article/IndexJavaScriptBlogList",{},function(response){
         $.each(response,function(i,blog){
             var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/'+blog.id+'">'+blog.title+'</a><span>'+blog.publishTime.substring(5)+'</span></li>';
@@ -466,10 +451,21 @@ $(function(){
     });
     Request.get("/article/IndexJavaBlogList",{},function(response){
         $.each(response,function(i,blog){
-            var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/'+blog.id+'">'+blog.title+'</a><span>'+blog.publishTime.substring(5)+'</span></li>';
+            var blogtitle = '<li><i class="fa fa-link"></i> <a href="/article/blog/'+blog.id+'">'+blog.title+'</a> <span>'+blog.publishTime.substring(5)+'</span></li>';
             $("#javaBlogs").append(blogtitle);
         });
     });
+
+    /**
+     * 加载最受欢迎的文章
+     */
+    Request.get("/article/IndexWelcomeBlogList",{},function(response){
+        $.each(response,function(i,blog){
+            var blogtitle = '<li><i class="fa fa-heart">'+blog.like+'</i><a style="margin-left: 10px" href="/article/blog/'+blog.id+'">'+blog.title+'</a></li>';
+            $("#weclomeBlog").append(blogtitle);
+        });
+    });
+
     var firstBlogFlag = true,secondBlogFlag = true,thridBlogFlag = true;
     $(window).scroll(function() {
         var s =$(window).scrollTop();

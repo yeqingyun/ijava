@@ -13,16 +13,8 @@
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/css/wangEditor/wangEditor.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/sweetalert/sweetalert.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/my/main.css"/>
     <style>
-        body {
-            padding-top: 65px
-            background-repeat:REPEAT-Y;
-            background-image: url(/imgs/back6.jpg);
-            background-size:100% 35%;
-        }
-        .footer {
-            padding-top: 35px
-        }
         .blog-views {
             border-left: 1px solid darkgray;
             padding-left: 10px
@@ -91,12 +83,19 @@
         body {
             font-family: Georgia, "Times New Roman", Times, serif;
             color: #555;
-            padding-top: 65px;
         }
 
         @media (min-width: 1200px) {
             .container {
                 width: 970px;
+            }
+        }
+
+        @media (max-height: 768px){
+            body {
+                font-family: Georgia, "Times New Roman", Times, serif;
+                padding-top: 65px;
+                background-repeat:REPEAT-Y;
             }
         }
 
@@ -246,7 +245,11 @@
     $(function(){
         var editor = new wangEditor('commentEdit');
         editor.create();
+        $("body").css("background-size","100% "+900/document.body.offsetHeight*100+"%")
+                .css("background-image","url(/imgs/back6.jpg)");
+        //$("body").attr("style","background-size:100% "+1000/document.body.offsetHeight*100+"%;background-image:url(/imgs/back6.jpg)");
 
+        //$("body").animate({backgroundSize : "100% "+1000/document.body.offsetHeight*100+"%" ,backgroundImage : "url(/imgs/back6.jpg)"},"fast");
         /**
          *  加载评论
          */

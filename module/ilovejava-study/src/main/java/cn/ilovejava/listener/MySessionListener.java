@@ -17,12 +17,12 @@ public class MySessionListener implements HttpSessionListener {
     private SimpMessagingTemplate messagingTemplate;*/
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        log.info("会话创建");
-        System.out.println("会话创建");
+        /*log.info("会话创建");
+        System.out.println("会话创建");*/
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        log.info("会话销毁");
+        /*log.info("会话销毁");*/
     }
 }

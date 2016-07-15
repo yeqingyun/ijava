@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
-* Created by yeqy on 2016-06-30 15:15:35.
-*/
+ * Created by yeqy on 2016-06-30 15:15:35.
+ */
 @Log4j
 @Controller
 @RequestMapping("article")
@@ -31,76 +31,82 @@ public class ArticleController{
 
 
     /**
-     * ¼ÓÔØÊ×Ò³¸÷¸ö²©¿ÍÄ£¿éµÄÕ¹Ê¾Êı¾İ
+     * åŠ è½½é¦–é¡µå„ä¸ªåšå®¢æ¨¡å—çš„å±•ç¤ºæ•°æ®
      * @return DataJson
      */
     @RequestMapping(value = "/IndexJavaBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexJavaBlogList(){
+    public String indexJavaBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_java.name(), pageable).getContent());
     }
 
     @RequestMapping(value = "/IndexJavaScriptBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexJavaScriptBlogList(){
+    public String indexJavaScriptBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_javaScript.name(),pageable).getContent());
     }
     @RequestMapping(value = "/IndexLinuxBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexLinuxBlogList(){
+    public String indexLinuxBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_linux.name(),pageable).getContent());
     }
     @RequestMapping(value = "/IndexDataStructureBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexDataStructureBlogList(){
+    public String indexDataStructureBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_dataStructure.name(),pageable).getContent());
     }
 
     @RequestMapping(value = "/IndexArithmeticBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexArithmeticBlogList(){
+    public String indexArithmeticBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_arithmetic.name(),pageable).getContent());
     }
     @RequestMapping(value = "/IndexDatabaseBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexDatabaseBlogList(){
+    public String indexDatabaseBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_database.name(),pageable).getContent());
     }
     @RequestMapping(value = "/IndexProgrammingIdeaBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexProgrammingIdeaBlogList(){
+    public String indexProgrammingIdeaBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_programmingIdea.name(),pageable).getContent());
     }
     @RequestMapping(value = "/IndexOperatingSystemBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexOperatingSystemBlogList(){
+    public String indexOperatingSystemBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_operatingSystem.name(),pageable).getContent());
     }
     @RequestMapping(value = "/IndexPageDesignBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexPageDesignBlogList(){
+    public String indexPageDesignBlogList(){
         Pageable pageable = new PageRequest(0, 10);
         return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_pageDesign.name(),pageable).getContent());
+    }
+    @RequestMapping(value = "/IndexWelcomeBlogList",method=RequestMethod.GET)
+    @ResponseBody
+    public String indexWelcomeBlogList(){
+        Pageable pageable = new PageRequest(0, 10);
+        return JSON.toJSONString(articleService.findOrderByLikeDesc(pageable).getContent());
     }
 
     @RequestMapping(value = "/IndexAllBlogList",method=RequestMethod.GET)
     @ResponseBody
-    public String IndexAllBlogList(){
+    public String indexAllBlogList(){
         Pageable pageable = new PageRequest(0, 10);
-        return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_pageDesign.name(),pageable).getContent());
+        return JSON.toJSONString(articleService.findByModuleCodeOrderByPublishTimeDesc(BlogModule.blog_pageDesign.name(), pageable).getContent());
     }
 
 
     /**
-     * Í¨¹ıid¶ÁÈ¡ÎÄÕÂÌø×ªµ½ÎÄÕÂÒ³
+     * é€šè¿‡idè¯»å–æ–‡ç« è·³è½¬åˆ°æ–‡ç« é¡µ
      * @param id
      * @param modelMap
      * @return
@@ -115,8 +121,8 @@ public class ArticleController{
     }
 
     /**
-     * Í¨¹ıÀàĞÍ¶ÁÈ¡ÎÄÕÂÌø×ªµ½¡°¸ü¶à¡±Ò³
-     * @param type ÀàĞÍ
+     * é€šè¿‡ç±»å‹è¯»å–æ–‡ç« è·³è½¬åˆ°â€œæ›´å¤šâ€é¡µ
+     * @param type ç±»å‹
      * @param modelMap
      * @return
      */
@@ -148,7 +154,7 @@ public class ArticleController{
         String name = request.getRemoteAddr();
         JsonResult jr = new JsonResult();
         int result = SerializeFunction.likeAndIpAuth(id, name, like);
-        if(result == 0){//Ö®Ç°²»´æÔÚµÄ
+        if(result == 0){//ä¹‹å‰ä¸å­˜åœ¨çš„
             Article article = articleService.findById(id);
             if(like){
                 article.setLike(article.getLike()+1);
@@ -157,22 +163,22 @@ public class ArticleController{
             }
             articleService.update(article);
             jr.setSuccess(true);
-            jr.setMsg(like ? "¿´µÃ³öÀ´£¬ÄãºÜÏ²»¶" : "ºÜÒÅº¶£¬ÏÂ´ÎÄã»áÏ²»¶µÄ");
+            jr.setMsg(like ? "çœ‹å¾—å‡ºæ¥ï¼Œä½ å¾ˆå–œæ¬¢" : "å¾ˆé—æ†¾ï¼Œä¸‹æ¬¡ä½ ä¼šå–œæ¬¢çš„");
             //List<Long[]> ls = articleService.findLikeAndDisLikeById(id);
             jr.addData("like",article.getLike());
             jr.addData("dislike",article.getDislike());
-        }else if(result == 1 && like){//ÒÑ¾­Ï²»¶¹ı
+        }else if(result == 1 && like){//å·²ç»å–œæ¬¢è¿‡
             jr.setSuccess(false);
-            jr.setMsg("ÄãÒ²Ì«Ï²»¶ÁË..");
-        }else if(result == 2 && !like){//ÒÑ¾­²»Ï²»¶¹ı
+            jr.setMsg("ä½ ä¹Ÿå¤ªå–œæ¬¢äº†...");
+        }else if(result == 2 && !like){//å·²ç»ä¸å–œæ¬¢è¿‡
             jr.setSuccess(false);
-            jr.setMsg("²»ÖÁÓÚÕâÃ´ÌÖÑá°É");
-        }else if(result == 1){//ÒÑ¾­Ï²»¶¹ıÁË£¬ÓÖµã»÷²»Ï²»¶
+            jr.setMsg("ä¸è‡³äºè¿™ä¹ˆè®¨åŒå§");
+        }else if(result == 1){//å·²ç»å–œæ¬¢è¿‡äº†ï¼Œåˆç‚¹å‡»ä¸å–œæ¬¢
             jr.setSuccess(false);
-            jr.setMsg("ÄãÒÑ¾­Ï²»¶¹ıÁË£¬²»ÄÜ·´»ÚÅ¶");
-        }else if(result == 2){//ÒÑ¾­²»Ï²»¶¹ıÁË£¬ÓÖµã»÷Ï²»¶
+            jr.setMsg("ä½ å·²ç»å–œæ¬¢è¿‡äº†ï¼Œä¸èƒ½åæ‚”å“¦");
+        }else if(result == 2){//å·²ç»ä¸å–œæ¬¢è¿‡äº†ï¼Œåˆç‚¹å‡»å–œæ¬¢
             jr.setSuccess(false);
-            jr.setMsg("ÄãÒÑ¾­ÌÖÑá¹ıÁË£¬²»ÄÜ·´»ÚÅ¶");
+            jr.setMsg("ä½ å·²ç»è®¨åŒè¿‡äº†ï¼Œä¸èƒ½åæ‚”å“¦");
         }
         return JSON.toJSONString(jr);
     }
